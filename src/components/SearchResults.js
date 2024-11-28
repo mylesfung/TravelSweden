@@ -1,3 +1,5 @@
+import "../App.css"
+
 function SearchResults() {
   return (
     <div className="App">
