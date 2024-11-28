@@ -1,13 +1,10 @@
-import '../App.css';
+import { Tab } from '@headlessui/react'
 
 function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          There's no place like 127.0.0.1.
-        </p>
-      </header>
+    <div class="home">
+        <p className='text-3xl'>add homepage elements & widgets</p>
+        
     </div>
   );
 }

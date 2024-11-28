@@ -1,15 +1,15 @@
 import '../../App.css';
 
-function Weather() {
+function Sight() {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          Weather
+          Sight
         </p>
       </header>
     </div>
   );
 }
 
-export default Weather;
+export default Sight;

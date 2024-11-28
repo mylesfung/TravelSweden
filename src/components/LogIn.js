@@ -1,15 +1,13 @@
-import '../../App.css';
-
-function Weather() {
+function LogIn() {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          Weather
+          Log In
         </p>
       </header>
     </div>
   );
 }
 
-export default Weather;
+export default LogIn;

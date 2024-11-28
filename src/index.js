@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter } from "react-router";
 import './index.css';
-
-import Home from './components/Home';
-import Visited from './components/widgets/Visited';
-import Journal from './components/widgets/Journal';
+import App from './App.js';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -13,15 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route index element={<Home />} />
-
-        <Route path="widgets">
-          <Route path="visited" element={<Visited />} />
-          <Route path="journal" element={<Journal />} />
-        </Route>
-
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );
