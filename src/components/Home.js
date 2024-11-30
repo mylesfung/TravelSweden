@@ -2,7 +2,7 @@ function Home() {
   return (
     <div class="home bg-stockholm bg-auto gap-10 p-10">
       <div id="reviews">
-        <a href="#" class="block opacity-90 max-w-xs p-7 bg-sky-700 border border-gray-300 rounded-2xl shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="#" class="block opacity-90 max-w-xs p-7 bg-sky-700 border border-gray-300 rounded-sm shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h6 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Reviews</h6>
           <p class="font-normal text-white dark:text-gray-400">User-averaged reviews of various travel destinations.</p>
         
@@ -15,7 +15,7 @@ function Home() {
         </a>
       </div>
       <div id="journal">
-        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-2xl shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-sm shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h6 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
             Journal
           </h6>
@@ -29,7 +29,7 @@ function Home() {
         </a>
       </div>
       <div id="weather">
-        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-2xl shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-sm shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h6 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Weather Today</h6>
           <p class="font-normal text-white dark:text-gray-400">Stockholm</p>
           <p class="font-normal text-white dark:text-gray-400">Gothenburg</p>
@@ -40,7 +40,7 @@ function Home() {
         </a>
       </div>
       <div id="transit-planner">
-        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-2xl shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="#" class="block opacity-90 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-sm shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h6 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
             Transit Planner
           </h6>
