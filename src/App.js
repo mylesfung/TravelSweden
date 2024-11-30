@@ -4,7 +4,7 @@ import './App.css';
 
 import Home from './components/Home';
 import Layout from './components/Layout';
-import LogIn from './components/LogIn';
+import SignIn from './components/SignIn';
 import SearchResults from './components/SearchResults';
 import SignUp from './components/SignUp';
 import Visited from './components/widgets/Visited';
@@ -18,7 +18,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="login" element={< LogIn />} />
+                <Route path="signin" element={< SignIn />} />
                 <Route path="searchresults" element={< SearchResults />} />
                 <Route path="signup" element={< SignUp />} />
                 <Route path="widgets">
