@@ -2,8 +2,8 @@ import "../App.css"
 
 function SearchResults() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div class="bg-stockholm bg-auto w-full text-center">
+      <header>
         <p>
           Search Results
         </p>

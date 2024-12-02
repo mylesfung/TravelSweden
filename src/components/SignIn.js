@@ -1,9 +1,9 @@
 function LogIn() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div class="bg-stockholm bg-auto w-full text-center">
+      <header>
         <p>
-          Log In
+          Signin card
         </p>
       </header>
     </div>

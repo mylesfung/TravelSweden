@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <div class="home bg-stockholm bg-auto gap-10 p-10">
+    <div class="home bg-stockholm gap-10 p-10">
       <div id="reviews">
         <a href="#" class="block opacity-90 max-w-xs p-7 bg-sky-700 border border-gray-300 rounded-sm shadow hover:bg-sky-800 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <h6 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">Reviews</h6>
