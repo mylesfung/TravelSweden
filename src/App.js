@@ -9,10 +9,10 @@ import SignUp from './components/pages/SignUp';
 import SearchResults from './components/pages/SearchResults';
 import Reviews from './components/pages/Reviews';
 import ReviewsWidget from "./components/widgets/ReviewsWidget";
-import Journal from './components/widgets/JournalWidget';
+import JournalWidget from './components/widgets/JournalWidget';
 import City from './components/widgets/City';
 import Sight from './components/widgets/Sight';
-import Weather from './components/widgets/Weather';
+import WeatherWidget from './components/widgets/WeatherWidget';
 import Text from "./components/pages/Text";
 import NewReview from "./components/pages/NewReview";
 
@@ -23,10 +23,10 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="widgets">
                     <Route path="ReviewsWidget" element={<ReviewsWidget />} />
-                    <Route path="journal" element={<Journal />} />
+                    <Route path="journal" element={<JournalWidget />} />
                     <Route path="city" element={<City />} />
                     <Route path="sight" element={<Sight />} />
-                    <Route path="weather" element={<Weather />} />
+                    <Route path="weather" element={<WeatherWidget />} />
                 </Route>
                 <Route path="pages">
                     <Route path="Reviews" element={<Reviews />} />
