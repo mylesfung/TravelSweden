@@ -24,14 +24,3 @@
       display: none;
   }
 }
-.body {
-  display: flex;
-}
-.home {
-  width: 100%;
-  height: 105vh;
-  display: flex;
-  flex-wrap: wrap;
-  color: rgb(0, 0, 0);
-}
-

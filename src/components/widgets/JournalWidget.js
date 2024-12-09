@@ -1,6 +1,6 @@
 import '../../App.css';
 
-function Journal() {
+function JournalWidget() {
   return (
     <div className="App">
       <header className="App-header">
@@ -12,4 +12,4 @@ function Journal() {
   );
 }
 
-export default Journal;
+export default JournalWidget;
