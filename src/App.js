@@ -7,13 +7,14 @@ import Layout from './components/Layout';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import SearchResults from './components/pages/SearchResults';
-import ReviewsPage from './components/pages/ReviewsPage';
+import Reviews from './components/pages/Reviews';
 import ReviewsWidget from "./components/widgets/ReviewsWidget";
 import Journal from './components/widgets/JournalWidget';
 import City from './components/widgets/City';
 import Sight from './components/widgets/Sight';
 import Weather from './components/widgets/Weather';
 import Text from "./components/pages/Text";
+import NewReview from "./components/pages/NewReview";
 
 function App() {
     return (
@@ -28,7 +29,8 @@ function App() {
                     <Route path="weather" element={<Weather />} />
                 </Route>
                 <Route path="pages">
-                    <Route path="ReviewsPage" element={<ReviewsPage />} />
+                    <Route path="Reviews" element={<Reviews />} />
+                    <Route path="NewReview" element={<NewReview />} />
                     <Route path="signin" element={<SignIn />} />
                     <Route path="signup" element={<SignUp />} />
                     <Route path="searchresults" element={<SearchResults />} />

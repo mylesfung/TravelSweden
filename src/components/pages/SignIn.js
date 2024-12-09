@@ -1,6 +1,6 @@
 function SignIn() {
   return (
-    <div class="home bg-stockholm gap-10 p-10">
+    <div class="flex flex-col flex-wrap w-full h-screen bg-stockholm p-10 gap-10">
       <header>
         <p>
           Signin card
