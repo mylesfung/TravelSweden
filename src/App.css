@@ -18,6 +18,9 @@
   width: 800px;
   margin-right: 155px;
 }
+.main-content{
+  margin-right: 155px;
+}
 #sign-in {
   display: flex;
   align-items: center;
@@ -29,7 +32,7 @@
   }
 }
 @media (max-width: 1100px) {
-  #text-box {
+  #text-box, .main-content {
     width: 100%;
   }
 }

@@ -16,7 +16,7 @@ import WeatherWidget from './components/widgets/WeatherWidget';
 import Lodging from "./components/static/Lodging";
 import Transit from "./components/static/Transit";
 import Food from "./components/static/Food";
-import NewReview from "./components/pages/NewReview";
+import WriteReview from "./components/pages/WriteReview";
 
 function App() {
     return (
@@ -25,7 +25,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="pages">
                     <Route path="Reviews" element={<Reviews />} />
-                    <Route path="NewReview" element={<NewReview />} />
+                    <Route path="WriteReview" element={<WriteReview />} />
                     <Route path="signin" element={<SignIn />} />
                     <Route path="signup" element={<SignUp />} />
                     <Route path="searchresults" element={<SearchResults />} />
