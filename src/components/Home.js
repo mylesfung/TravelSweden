@@ -5,7 +5,7 @@ import TransitWidget from "./widgets/TransitWidget";
 
 function Home() {
   return (
-    <div class="flex flex-wrap w-full h-screen bg-stockholm gap-10 p-10">
+    <div className="flex flex-wrap w-full h-screen bg-stockholm gap-10 p-10">
       <ReviewsWidget />
       <JournalWidget />
       <WeatherWidget />

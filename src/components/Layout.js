@@ -1,14 +1,15 @@
 import { Link, Outlet } from 'react-router';
 
 import Sidebar from "./Sidebar";
+
 import Flag from "../images/sweden-flag.png";
 
 function Layout() {
   return (
-    <div class="layout text-sky-950 bg-gray-100">
-      <div class="navbar border-b-4 border-double border-sky-800">
-        <div class="flex gap-3">
-          <div class="size-7">
+    <div className="layout text-sky-950 bg-gray-100">
+      <div className="navbar border-b-4 border-double border-sky-800">
+        <div className="flex gap-3">
+          <div className="size-7">
             <img src={Flag} alt="sweden-flag" />
           </div>
           <div>
@@ -31,7 +32,7 @@ function Layout() {
         </div>
       </div>
       </div>
-      <div class="flex">
+      <div className="flex">
         <Sidebar />
         <Outlet />
       </div>
