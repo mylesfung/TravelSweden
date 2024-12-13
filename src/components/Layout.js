@@ -1,7 +1,5 @@
 import { Link, Outlet } from 'react-router';
-
 import { Sidebar } from "./Sidebar";
-
 import Flag from "../images/sweden-flag.png";
 
 export function Layout() {
