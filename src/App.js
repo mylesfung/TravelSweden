@@ -8,11 +8,6 @@ import { SignIn } from './components/pages/SignIn';
 import { SignUp } from './components/pages/SignUp';
 import { SearchResults } from './components/pages/SearchResults';
 import { Reviews } from './components/pages/Reviews';
-import { ReviewsWidget } from "./components/widgets/ReviewsWidget";
-import { JournalWidget } from './components/widgets/JournalWidget';
-import { City } from './components/widgets/City';
-import { Sight } from './components/widgets/Sight';
-import { WeatherWidget } from './components/widgets/WeatherWidget';
 import { Lodging } from "./components/static/Lodging";
 import { Transit } from "./components/static/Transit";
 import { Food } from "./components/static/Food";
@@ -34,13 +29,6 @@ export function App() {
                     <Route path="lodging" element={<Lodging />} />
                     <Route path="transit" element={<Transit />} />
                     <Route path="food" element={<Food />} />
-                </Route>
-                <Route path="widgets">
-                    <Route path="ReviewsWidget" element={<ReviewsWidget />} />
-                    <Route path="journal" element={<JournalWidget />} />
-                    <Route path="city" element={<City />} />
-                    <Route path="sight" element={<Sight />} />
-                    <Route path="weather" element={<WeatherWidget />} />
                 </Route>
             </Route>  
         </Routes>
