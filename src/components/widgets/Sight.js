@@ -1,6 +1,6 @@
 import '../../App.css';
 
-function Sight() {
+export function Sight() {
   return (
     <div className="App">
       <header className="App-header">
@@ -11,5 +11,3 @@ function Sight() {
     </div>
   );
 }
-
-export default Sight;

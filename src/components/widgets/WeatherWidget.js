@@ -1,6 +1,6 @@
 import '../../App.css';
 
-function WeatherWidget() {
+export function WeatherWidget() {
   return (
     <div id="weather">
       <a href="#" className="block opacity-95 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-sm shadow">
@@ -15,5 +15,3 @@ function WeatherWidget() {
     </div>
   );
 }
-
-export default WeatherWidget;

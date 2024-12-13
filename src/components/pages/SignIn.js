@@ -1,7 +1,7 @@
 import Flag from "../../images/sweden-flag.png";
 import { SignUp } from './SignUp';
 
-function SignIn() {
+export function SignIn() {
   return (
     <div className="bg-gray-350 h-screen w-full">
       <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
@@ -57,5 +57,3 @@ function SignIn() {
     </div>
   );
 }
-
-export default SignIn;

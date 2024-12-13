@@ -1,6 +1,6 @@
 import "../../App.css";
 
-function Food() {
+export function Food() {
     return (
       <div className="flex flex-col flex-wrap items-center text-center w-full h-screen bg-street bg-cover p-10 gap-10">
         <a id="text-box" className="opacity-95 block h-full p-8 bg-gray-200 border border-gray-300 rounded-sm shadow">
@@ -25,4 +25,3 @@ Many Swedes, including an increasing number of restaurants, have their own garde
     );
   }
   
-  export default Food;

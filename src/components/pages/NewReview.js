@@ -1,6 +1,6 @@
 import "../../App.css"
 
-function NewReview() {
+export function NewReview() {
   return (
     <div className="bg-gray-300 h-screen w-full">
       <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
@@ -48,5 +48,3 @@ function NewReview() {
     </div>
   );
 }
-
-export default NewReview;

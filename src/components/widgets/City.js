@@ -1,6 +1,6 @@
 import '../../App.css';
 
-function City() {
+export function City() {
   return (
     <div className="App">
       <header className="App-header">
@@ -11,5 +11,3 @@ function City() {
     </div>
   );
 }
-
-export default City;

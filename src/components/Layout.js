@@ -1,10 +1,10 @@
 import { Link, Outlet } from 'react-router';
 
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 
 import Flag from "../images/sweden-flag.png";
 
-function Layout() {
+export function Layout() {
   return (
     <div className="layout text-sky-950 bg-gray-100">
       <div className="navbar border-b-4 border-double border-sky-800">
@@ -17,7 +17,7 @@ function Layout() {
           </div>
         </div>
         <div>
-          <Link to="/pages/searchresults">Search</Link>
+          <Link to="/">Home</Link>
         </div>
         <div id="sign-in">
         <div>
@@ -39,5 +39,3 @@ function Layout() {
     </div>
   );
 }
-
-export default Layout;

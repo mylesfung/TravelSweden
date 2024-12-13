@@ -1,4 +1,4 @@
-function Sidebar() {
+export function Sidebar() {
     return (
         <div className="sidebar bg-sky-700">
             <aside className="flex flex-col border-r-2 border-gray-300 h-full px-14 py-1">
@@ -84,5 +84,3 @@ function Sidebar() {
         </div>
     )
 }
-
-export default Sidebar;

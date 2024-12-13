@@ -1,6 +1,6 @@
 import "../../App.css";
 
-function ReviewsWidget() {
+export function ReviewsWidget() {
     return (
         <div id="reviews">
             <a href="/pages/Reviews" className="block opacity-95 max-w-xs p-7 bg-sky-700 border border-gray-300 rounded-sm shadow">
@@ -17,5 +17,3 @@ function ReviewsWidget() {
         </div>
     )
 }
-
-export default ReviewsWidget;

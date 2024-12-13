@@ -1,6 +1,6 @@
 import Flag from "../../images/sweden-flag.png";
 
-function SignUp() {
+export function SignUp() {
   return (
     <div className="bg-gray-350 h-screen w-full">
       <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
@@ -56,5 +56,3 @@ function SignUp() {
     </div>
   );
 }
-
-export default SignUp;

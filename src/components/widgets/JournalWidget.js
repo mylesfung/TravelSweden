@@ -1,6 +1,6 @@
 import '../../App.css';
 
-function JournalWidget() {
+export function JournalWidget() {
   return (
     <div id="journal">
         <a href="#" className="block opacity-95 max-w-sm p-7 bg-sky-700 border border-gray-300 rounded-sm shadow">
@@ -18,5 +18,3 @@ function JournalWidget() {
     </div>
   );
 }
-
-export default JournalWidget;
