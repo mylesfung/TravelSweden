@@ -1,7 +1,6 @@
 import "../../App.css"
-/*import { Link } from 'react-router';*/
 
-function WriteReview() {
+function NewReview() {
   return (
     <div className="bg-gray-300 h-screen w-full">
       <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
@@ -38,7 +37,7 @@ function WriteReview() {
                 <br></br>
 
                 <input 
-                  className="rounded-md p-2 text-white bg-blue-700 rounded-lg hover:bg-blue-800" 
+                  className="rounded-md p-2 text-white bg-sky-700 rounded-lg hover:bg-cyan-800" 
                   type="submit" 
                   value="Submit Review">                      
                 </input>
@@ -50,4 +49,4 @@ function WriteReview() {
   );
 }
 
-export default WriteReview;
+export default NewReview;

@@ -32,7 +32,12 @@
   }
 }
 @media (max-width: 1100px) {
-  #text-box, .main-content {
+  #text-box {
+    width: 100%;
+  }
+}
+@media (max-width: 1200px) {
+  .main-content {
     width: 100%;
   }
 }
