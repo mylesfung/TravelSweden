@@ -17,9 +17,12 @@ export function ReviewCard({ id = false, uid = false, title, rating, description
                 <a href="#">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
                 </a>
-                <a>
+                <p>
+                    Author: {id}
+                </p>
+                <p>
                     Rating: {rating}/5
-                </a>
+                </p>
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
