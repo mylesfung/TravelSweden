@@ -1,13 +1,7 @@
-import '../../App.css';
-
-import flag from '../../images/sweden-flag.png';
+import '../App.css';
+import flag from '../images/sweden-flag.png';
 
 export function ReviewCard({ id = false, uid = false, title, rating, description, image = flag }) {
-
-    /**
-     * 
-     */
-
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">

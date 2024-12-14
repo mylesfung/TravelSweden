@@ -1,4 +1,4 @@
-import { InfoCard } from "../pages/InfoCard";
+import { InfoCard } from "../InfoCard";
 
 export function Food() {
   

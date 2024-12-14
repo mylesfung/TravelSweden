@@ -1,4 +1,4 @@
-import "../../App.css";
+import "../App.css";
 
 export function InfoCard({ title, body }) {
     return (
