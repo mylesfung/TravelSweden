@@ -19,8 +19,7 @@ export function NewReview() {
 
     const form = e.target;
     const formData = new FormData(form);
-    // POST to PostgreSQL
-    // ALSO: add review_id & uid to request
+    // POST to PostgreSQL w/ logged-in user's review_id & uid 
     fetch('cool-api.com', { method: form.method, body: formData });   
   }
 
