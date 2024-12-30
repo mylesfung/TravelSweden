@@ -1,19 +1,5 @@
-.layout {
-  display: flex;
-  flex-direction: column;
-}
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  font-size: medium;
-}
-#title {
-  font-style: oblique;
-  font-size: large;
-}
+
+
 #text-box {
   width: 800px;
   margin-right: 150px;

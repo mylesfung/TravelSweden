@@ -1,6 +1,10 @@
 import Flag from "../../images/sweden-flag.png";
 
 export function SignUp() {
+
+  
+
+
   return (
     <div className="bg-gray-350 h-[calc(100vh-5rem)] w-full">
       <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
