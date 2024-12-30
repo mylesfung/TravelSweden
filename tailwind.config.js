@@ -19,11 +19,11 @@ module.exports = {
  * - PRO: No .css files necessary
  * - PRO: Good for small and unique style needs 
  * 
- * - CON: Tailwind className items are not connected/shared; 
+ * - CON: 'className' items are not connected/shared; 
  *        cannot change multiple HTML elements simultaneously
  * - CON: Inline Tailwind CSS still un-elegant/takes up a lot of space compared to external .css file
- * - CON: Limited values when dealing with highly specific sizes 
- *        (ex. width, viewport-width-percentage, display-width-pixels, font-style-oblique)
+ * - CON: Limited values when dealing with highly specific sizes and large pixel sizes
+ *        (ex. set large widths, viewport-width-percentage, display-width-pixels, font-style-oblique)
  * - CON: other configurations I don't know about probably not available
  * 
  */
