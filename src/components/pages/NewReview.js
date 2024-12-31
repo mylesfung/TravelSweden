@@ -23,7 +23,7 @@ export function NewReview() {
 
   return (
     <div className="bg-gray-300 h-[calc(100vh-5rem)] w-full">
-      <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
+      <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
         <div className="text-2xl font-semibold">
           New Review
         </div>
