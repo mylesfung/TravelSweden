@@ -2,12 +2,12 @@ import Flag from "../../images/sweden-flag.png";
 
 export function SignUp() {
 
-  
+
 
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-5rem)] w-full">
-      <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
+      <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
     
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

@@ -1,7 +1,6 @@
 import flag from '../../images/sweden-flag.png';
 import uppsala from '../../images/uppsala-biking.jpg';
 import floss from '../../images/floss-picks.jpeg';
-import '../../App.css';
 
 function ReviewCard({ id = false, uid = false, title, rating, description, image = flag }) {
     return (
@@ -39,7 +38,7 @@ export function Reviews() {
 
   return (
     <div className="bg-gray-200 h-[calc(100vh-5rem)] w-full overflow-auto">
-        <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
+        <div className='w-fit flex flex-col flex-wrap items-center p-10 gap-10'>
             <p className="text-2xl font-semibold">Reviews</p>
             <p className="text-lg w-1/2 text-center">A collection of reviews from the TravelSweden community on Swedish nature, history/culture, design innovation, nearby cities, and everything in between.</p>
             

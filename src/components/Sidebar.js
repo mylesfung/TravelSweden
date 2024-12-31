@@ -1,6 +1,6 @@
 export function Sidebar() {
     return (
-        <div className="sidebar bg-sky-700">
+        <div className="hidden md:block bg-sky-700">
             <aside className="flex flex-col border-r-2 border-gray-300 h-full px-14 py-1">
                 <div className="flex flex-col justify-between flex-1 mt-6">
                     <nav className="-mx-4 space-y-6 ">

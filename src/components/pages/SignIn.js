@@ -2,12 +2,12 @@ import Flag from "../../images/sweden-flag.png";
 
 export function SignIn() {
 
-  
+
 
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-5rem)] w-full">
-      <div className='main-content flex flex-col flex-wrap items-center p-10 gap-10'>
+      <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
     
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -44,7 +44,7 @@ export function SignIn() {
               <div>
                 <button type="submit" className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
                   Sign in
-                  </button>
+                </button>
               </div>
             </form>
 
