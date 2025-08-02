@@ -36,7 +36,7 @@ export function Home() {
       <HomeWidget 
         title={"Journal"}
         description={"Your personal travel journal."}
-        main_path={"/"}
+        main_path={"/pages/Maintenance"}
         button_path={"/"}
         button_label={"New Entry"}
         button_icon={
@@ -48,7 +48,7 @@ export function Home() {
       <HomeWidget 
         title={"Weather Report"}
         description={"Dynamic weather API data for the most populous Swedish cities."}
-        main_path={"/"}
+        main_path={"/pages/Maintenance"}
         button_path={"/"}
         button_label={"Get Today's Weather"}
         button_icon={
@@ -60,7 +60,7 @@ export function Home() {
       <HomeWidget 
         title={"Transit Planner"}
         description={"Find the best routes across Sweden."}
-        main_path={"/"}
+        main_path={"/pages/Maintenance"}
         button_path={"/"}
         button_label={"Find Route"}
         button_icon={

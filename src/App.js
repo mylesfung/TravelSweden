@@ -6,10 +6,9 @@ import { Layout } from './Layout';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { Reviews } from './pages/Reviews';
-import { Lodging } from "./pages/Lodging";
-import { Transit } from "./pages/Transit";
-import { Food } from "./pages/Food";
+import { Lodging, Transit, Food } from "./SidebarInfo";
 import { NewReview } from "./pages/NewReview";
+import { Maintenance } from "./pages/Maintenance";
 
 export function App() {
     return (
@@ -24,6 +23,7 @@ export function App() {
                     <Route path="NewReview" element={<NewReview />} />
                     <Route path="signin" element={<SignIn />} />
                     <Route path="signup" element={<SignUp />} />
+                    <Route path="maintenance" element={<Maintenance />} />
                 </Route>
             </Route>  
         </Routes>
