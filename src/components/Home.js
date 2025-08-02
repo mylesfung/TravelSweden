@@ -3,7 +3,7 @@
 function HomeWidget({ title, description, main_path, button_path = false, button_label = false, button_icon = false }) {
   return (
       <div>
-          <a href={main_path} className="block opacity-95 max-w-xs p-7 bg-sky-700 border border-gray-300 rounded-sm shadow">
+          <a href={main_path} className="block opacity-95 max-w-xs p-7 bg-sky-700 border border-gray-300 hover:bg-sky-800 rounded-sm shadow">
               <h6 className="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">{title}</h6>
               <p className="font-normal text-white dark:text-gray-400">{description}</p>
               
