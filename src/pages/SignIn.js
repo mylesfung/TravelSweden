@@ -1,4 +1,6 @@
-import Flag from "../../images/sweden-flag.png";
+import Flag from "../images/sweden-flag.png";
+
+// Card from https://v1.tailwindcss.com/components/cards
 
 export function SignIn() {
 

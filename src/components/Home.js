@@ -1,3 +1,5 @@
+// Widgets from https://v1.tailwindcss.com/components/cards
+
 function HomeWidget({ title, description, main_path, button_path = false, button_label = false, button_icon = false }) {
   return (
       <div>

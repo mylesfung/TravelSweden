@@ -1,6 +1,6 @@
-import flag from '../../images/sweden-flag.png';
-import uppsala from '../../images/uppsala-biking.jpg';
-import floss from '../../images/floss-picks.jpeg';
+import flag from '../images/sweden-flag.png';
+import uppsala from '../images/uppsala-biking.jpg';
+import floss from '../images/floss-picks.jpeg';
 
 function ReviewCard({ id = false, uid = false, title, rating, description, image = flag }) {
     return (
