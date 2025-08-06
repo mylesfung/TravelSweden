@@ -24,10 +24,11 @@ export function NewReview() {
   return (
     <div className="bg-gray-300 h-[calc(100vh-5rem)] w-full">
       <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
-        <div className="text-2xl font-semibold">
+        <div className="text-3xl font-semibold">
           New Review
         </div>
-        <div className="w-96 p-8 bg-gray-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-96 p-8 bg-gray-200 border border-gray-200 rounded-lg text-lg
+        shadow dark:bg-gray-800 dark:border-gray-700">
           
           <form method="post" onSubmit={submitReview}>
             <label htmlFor="title">
@@ -52,7 +53,7 @@ export function NewReview() {
 
             <label htmlFor="description">
               Description:
-              <input className="h-24 w-full p-2 rounded-md" name="description"></input>
+              <textarea className="h-44 w-full p-2 rounded-md" name="description"></textarea>
             </label>
             <br></br>
             <br></br>
