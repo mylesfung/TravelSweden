@@ -1,13 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
-import { Home } from './components/Home';
+import { Home } from './pages/Home';
 import { Layout } from './Layout';
-import { SignIn } from './pages/SignIn';
-import { SignUp } from './pages/SignUp';
-import { Reviews } from './pages/Reviews';
-import { Lodging, Transit, Food } from "./SidebarInfo";
-import { NewReview } from "./pages/NewReview";
+import { SignUp, SignIn } from './pages/Login';
+import { Reviews, NewReview } from './pages/Reviews';
+import { Lodging, Transit, Food } from "./pages/SidebarInfo";
 import { Maintenance } from "./pages/Maintenance";
 
 export function App() {
