@@ -2,7 +2,8 @@ package com.mylesfung.travelsweden.model;
 
 import jakarta.persistence.*;
 
-// Cannot use 'public record Review' because JPA requires no-arg constructor,
+// Cannot use 'public record' Review data transfer object (DTO)
+// because JPA requires no-arg constructor
 // and fields need to be mutable to reflect DB updates / business logic methods
 
 @Entity
@@ -18,5 +19,18 @@ public class Review {
     private byte[] image;
 
     // getters and setters
+    public Long getId() {return id;}
+    public String getUser() {return username;}
+    public void setUser(String name) {this.username = name;}
+    public String getTitle() {return title;}
+    public void setTitle(String text) {this.title = text;}
+    public Integer getRating() {return this.rating;}
+    public void setRating(Integer n) {this.rating = n;}
+    public String getDesc() {return this.description;}
+    public void setDesc(String text) {this.description = text;}
+    public byte[] getImage() {return this.image;}
+    public void setImage(byte[] file) {this.image = file;}
+
+
 
 }
