@@ -12,8 +12,8 @@ public class ReviewController {
     private final ReviewRepo repo;
     // Constructor injection :
     //  Spring Data JPA auto-generates/injects repo implementation
-    public ReviewController(ReviewRepo repo) {
-        this.repo = repo;
+    public ReviewController(ReviewRepo rr) {
+        repo = rr;
     }
 
     @GetMapping
