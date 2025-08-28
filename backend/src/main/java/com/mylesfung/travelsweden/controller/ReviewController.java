@@ -2,6 +2,7 @@ package com.mylesfung.travelsweden.controller;
 
 import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
+import com.mylesfung.travelsweden.service.ReviewService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,32 +10,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
-    // DB Connection object
     private final ReviewRepo reviewRepo;
-    // Constructor injection :
-    //  Spring Data JPA auto-generates/injects repo implementation
-    public ReviewController(ReviewRepo reviewRepo) {
+    private final ReviewService reviewService;
+    // Constructor injections :
+    //  Spring Data JPA auto-generates repo and service implementation
+    public ReviewController(ReviewRepo reviewRepo, ReviewService reviewService) {
         this.reviewRepo = reviewRepo;
+        this.reviewService = reviewService;
     }
 
     @GetMapping
     public List<Review> getAllReviews() {
         return reviewRepo.findAll();
     }
-
     @PostMapping
     public void addReview(Review rvw) {
-        reviewRepo.save(rvw);
+        reviewService.addReview(rvw);
     }
     @PutMapping
     public void editReview(Review rvw) {
-        // edit review
-
+        reviewService.editReview(rvw);
     }
-
     @DeleteMapping
     public void deleteReview(Review rvw) {
-        reviewRepo.delete(rvw);
+        reviewService.deleteReview(rvw);
     }
 
 }
