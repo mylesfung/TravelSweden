@@ -2,14 +2,16 @@ package com.mylesfung.travelsweden.model;
 
 import jakarta.persistence.*;
 
+//import java.nio.file.Files;
+
 // Cannot use 'public record' Review data transfer object (DTO)
 // because JPA requires no-arg constructor
 // and fields need to be mutable to reflect DB updates / business logic methods
 
-@Entity
+@Entity @Table(name = "reviews")
 public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Review() {}
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String title;
@@ -20,8 +22,8 @@ public class Review {
 
     // getters and setters
     public Long getId() {return id;}
-    public String getUser() {return username;}
-    public void setUser(String name) {this.username = name;}
+    public String getUsername() {return username;}
+    public void setUsername(String name) {this.username = name;}
     public String getTitle() {return title;}
     public void setTitle(String text) {this.title = text;}
     public Integer getRating() {return this.rating;}
@@ -29,7 +31,11 @@ public class Review {
     public String getDesc() {return this.description;}
     public void setDesc(String text) {this.description = text;}
     public byte[] getImage() {return this.image;}
-    public void setImage(byte[] file) {this.image = file;}
+    public void setImage(String img_path) {
+        // use Files/Paths libraries to extract img bytes from img path
+        //byte[] img_bytes = ...
+        //this.image = img_bytes;
+    }
 
 
 

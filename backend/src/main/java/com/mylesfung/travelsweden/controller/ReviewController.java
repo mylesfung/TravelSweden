@@ -9,26 +9,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
-    private final ReviewRepo repo;
+    // DB Connection object
+    private final ReviewRepo reviewRepo;
     // Constructor injection :
     //  Spring Data JPA auto-generates/injects repo implementation
-    public ReviewController(ReviewRepo rr) {
-        repo = rr;
+    public ReviewController(ReviewRepo reviewRepo) {
+        this.reviewRepo = reviewRepo;
     }
 
     @GetMapping
     public List<Review> getAllReviews() {
-        return repo.findAll();
+        return reviewRepo.findAll();
     }
 
     @PostMapping
     public void addReview(Review rvw) {
-        repo.save(rvw);
+        reviewRepo.save(rvw);
+    }
+    @PutMapping
+    public void editReview(Review rvw) {
+        // edit review
+
     }
 
     @DeleteMapping
     public void deleteReview(Review rvw) {
-        repo.delete(rvw);
+        reviewRepo.delete(rvw);
     }
 
 }
