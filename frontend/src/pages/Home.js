@@ -7,7 +7,7 @@ export function Home() {
           title={"Reviews"}
           description={"User reviews of various travel experiences and Swedish phenomena."}
           main_path={"/pages/Reviews"}
-          button_path={"/pages/NewReview"}
+          button_path={"/pages/SubmitReview"}
           button_label={"Write a Review"}
           button_icon={
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
