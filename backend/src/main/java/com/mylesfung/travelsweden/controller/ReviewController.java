@@ -24,8 +24,16 @@ public class ReviewController {
         return reviewRepo.findAll();
     }
     @PostMapping
-    public void addReview(Review rvw) {
-        reviewService.addReview(rvw);
+    public void addReview(
+            @RequestParam String username,
+            @RequestParam String title,
+            @RequestParam Integer rating,
+            @RequestParam String description,
+            @RequestParam byte[] image
+
+    ) {
+        // @RequestBody parses JSON, @RequestParam parses HTML form inputs
+        reviewService.addReview(username, title, rating, description, image);
     }
     @PutMapping
     public void editReview(Review rvw) {

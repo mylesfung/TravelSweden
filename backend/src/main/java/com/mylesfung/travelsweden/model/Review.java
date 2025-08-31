@@ -31,7 +31,7 @@ public class Review {
     public String getDesc() {return this.description;}
     public void setDesc(String text) {this.description = text;}
     public byte[] getImage() {return this.image;}
-    public void setImage(String img_path) {
+    public void setImage(byte[] image) {
         // use Files/Paths libraries to extract img bytes from img path
         //byte[] img_bytes = ...
         //this.image = img_bytes;
