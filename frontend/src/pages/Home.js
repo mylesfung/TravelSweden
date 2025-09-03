@@ -2,7 +2,7 @@ import { HomeWidget } from '../components/HomeWidget';
 
 export function Home() {
     return (
-      <div className="flex flex-wrap w-full h-[calc(100vh-5rem)] bg-street bg-cover overflow-auto gap-10 p-10">
+      <div className="flex flex-wrap w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
         <HomeWidget 
           title={"Reviews"}
           description={"User reviews of various travel experiences and Swedish phenomena."}

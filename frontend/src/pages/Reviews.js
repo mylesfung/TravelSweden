@@ -1,17 +1,28 @@
 import uppsala from '../images/uppsala-biking.jpg';
 import floss from '../images/floss-picks.jpeg';
 import { ReviewCard } from '../components/ReviewCard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Reviews() {
-  
-  let reviews = []; // assign 'reviews' to GET all-reviews-array from PostgreSQL 
-  
-  
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    async function getReviews() {
+      try {
+        const response = await fetch('http://localhost:8080/api/reviews');
+        const data = await response.json();
+        setReviews(data);
+      } catch (err) {
+        console.error("Error fetching reviews: ", err);
+      }
+    }
+    getReviews();
+  }, []) // empty dependency array [] ensures this only runs once on component mount (= once per page load)
 
   return (
-    <div className="bg-gray-200 h-[calc(100vh-5rem)] w-full overflow-auto">
-        <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
+    <div className="bg-gray-200 h-[calc(100vh-6.25rem)] w-full overflow-auto">
+        <div className='flex flex-col flex-wrap items-center md:mr-28 p-10 gap-10'>
             <p className="text-3xl font-semibold">Reviews</p>
             <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on Swedish nature, history/culture, design innovation, nearby cities, and everything in between.</p>
             
@@ -22,33 +33,16 @@ export function Reviews() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
             </a>
+            
             <div id="review-cards" className="flex flex-wrap gap-10">  
-
-                <ReviewCard 
-                    id={"Veronica Maggio"}
-                    uid={false}
-                    title={"Uppsala Biking Tour"}
-                    rating={5}
-                    description={"With bike rentals available and dedicated cycle lanes almost everywhere, Uppsala is perfect for biking."}
-                    image={uppsala}
-                />
-                <ReviewCard 
-                    id={"Håkan Hellström"}
-                    uid={false}
-                    title={"Interesting Floss Picks"}
-                    rating={4}
-                    description={"Pricey but has pros: easy access to molars, mint- and charcoal-infused, double-stranded."}
-                    image={floss}
-                />
-
-                {reviews.map((review) => (
-                    <ReviewCard 
-                        id={false}
-                        uid={false}
-                        title={"Uppsala Biking Tour"}
-                        rating={5}
-                        description={"With bike rentals available and dedicated cycle lanes almost everywhere, Uppsala is perfect for biking."}
-                        image={uppsala}
+                {reviews.map((review, index) => (
+                  <ReviewCard
+                        key={index}
+                        username={review.username}
+                        title={review.title}
+                        rating={review.rating}
+                        description={review.description}
+                        image={review.image}
                     />
                 ))}
             </div>
@@ -71,18 +65,22 @@ export function SubmitReview() {
       e.preventDefault(); // stop auto-page reload before async op completes
 
       const formData = new FormData();
-      formData.append('Myles (placeholder)', username);
+      formData.append('username', "Placeholder_Myles_User"); // replace with username from auth context 
       formData.append('title', title);
-      formData.append('rating', rating);
+      formData.append('rating', Number(rating));
       formData.append('description', description);
-      if (image) {
+      if (image) {  
         formData.append('image', image);
       }
 
-      await fetch('http://localhost:8080/api/reviews', { 
-        method: "POST", 
-        body: formData,
-      })
+      try {
+        await fetch('http://localhost:8080/api/reviews', { 
+          method: "POST", 
+          body: formData,
+        });
+      } catch (err) {
+        console.error("Error posting new review: ", err);
+      }
 
       setUsername("");
       setTitle("");
@@ -92,7 +90,7 @@ export function SubmitReview() {
     }
   
     return (
-      <div className="bg-gray-300 h-[calc(100vh-5rem)] w-full">
+      <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full">
         <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
           <div className="text-3xl font-semibold">
             New Review
@@ -125,7 +123,7 @@ export function SubmitReview() {
               <br></br>
   
               <label htmlFor="description">
-                Description:
+                Description (optional):
                 <textarea className="h-44 w-full p-2 rounded-md" 
                 type="text" value={description} name="description"
                 onChange={e => setDescription(e.target.value)}></textarea>
@@ -147,7 +145,7 @@ export function SubmitReview() {
                 type="submit" 
                 value="Submit Review">                      
               </input>
-              <a href="/pages/Reviews" className="ml-2 rounded-md p-2 rounded-lg">Cancel</a>
+              <a href="/pages/Reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
             </form>
   
           </div>

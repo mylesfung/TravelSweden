@@ -1,10 +1,8 @@
-import flag from '../images/sweden-flag.png';
-
-export function ReviewCard({ id = false, uid = false, title, rating, description, image = flag }) {
+export function ReviewCard({ username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                <img className="rounded mx-auto" src={image} alt="sweden-flag" />
+                {image && <img className="rounded mx-auto" src={image} alt="review-image" />}
             </a>
             <div className="p-8 text-lg">
                 <a href="#">
@@ -12,7 +10,7 @@ export function ReviewCard({ id = false, uid = false, title, rating, description
                     text-gray-900 dark:text-white">{title}</h5>
                 </a>
                 <p>
-                    Author: {id}    
+                    Author: {username}    
                 </p>
                 <p>
                     Rating: {rating}/5
