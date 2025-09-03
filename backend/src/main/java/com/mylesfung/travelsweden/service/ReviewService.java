@@ -14,7 +14,7 @@ public class ReviewService {
 
     // Implement controller methods requiring validation, user checks, business rules, etc.
     public void addReview(String username, String title, Integer rating, String description, byte[] image) {
-        // Spring Data JPA converts Review => SQL at runtime and inserts into DB
+        // Hibernate/Spring Data JPA converts Review => SQL at runtime and inserts into DB
         Review r = new Review();
         r.setUsername(username);
         r.setTitle(title);
@@ -24,6 +24,10 @@ public class ReviewService {
         r.setImage(image);
         reviewRepo.save(r);
     }
-    public void editReview(Review rvw) {}
-    public void deleteReview(Review rvw) {}
+    public void editReview(Review rvw) {
+        // Logged-in users can edit reviews by ID
+    }
+    public void deleteReview(Review rvw) {
+        // Logged-in users can delete reviews by ID
+    }
 }

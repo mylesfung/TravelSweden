@@ -1,5 +1,5 @@
-import uppsala from '../images/uppsala-biking.jpg';
-import floss from '../images/floss-picks.jpeg';
+//import uppsala from '../images/uppsala-biking.jpg';
+//import floss from '../images/floss-picks.jpeg';
 import { ReviewCard } from '../components/ReviewCard';
 import { useState, useEffect } from 'react';
 
@@ -25,8 +25,9 @@ export function Reviews() {
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">Reviews</p>
-                <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on Swedish nature, history/culture, design innovation, nearby cities, and more.</p>
-                <a href="/pages/SubmitReview" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on 
+                Swedish nature, history, culture, design innovation, nearby cities, and more.</p>
+                <a href="/pages/NewReview" className="inline-flex items-center px-4 py-3 text-xl font-medium 
                 text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
                     New Review
@@ -34,7 +35,6 @@ export function Reviews() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </a>
-                <hr className="w-5/6 border-t-2 border-gray-400 my-4" />
             </div>
 
             <div id="review-cards" className="flex flex-wrap gap-10 items-center justify-center">  
@@ -54,7 +54,7 @@ export function Reviews() {
   );
 }
 
-export function SubmitReview() {
+export function NewReview() {
 
     const [username, setUsername] = useState("");
     const [title, setTitle] = useState("");
@@ -98,7 +98,7 @@ export function SubmitReview() {
           <div className="text-3xl font-semibold">
             New Review
           </div>
-          <div className="w-96 p-8 bg-gray-200 border border-gray-200 rounded-lg text-lg
+          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-lg
           shadow dark:bg-gray-800 dark:border-gray-700">
             
             <form method="post" onSubmit={handleSubmit}>
@@ -112,7 +112,7 @@ export function SubmitReview() {
               <br></br>
   
               <label htmlFor="rating">
-                Rating out of five:
+                Rating out of 5:
                 <select className="p-1 ml-2 rounded-md" value={rating} name="rating"
                 onChange={e => setRating(e.target.value)}>
                   <option value="1">1</option>
@@ -142,7 +142,7 @@ export function SubmitReview() {
               <br></br>
               <br></br>
               <br></br>
-  
+           
               <input 
                 className="rounded-md p-2 text-white bg-sky-700 rounded-lg hover:bg-cyan-800" 
                 type="submit" 
@@ -150,7 +150,6 @@ export function SubmitReview() {
               </input>
               <a href="/pages/Reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
             </form>
-  
           </div>
         </div>
       </div>
