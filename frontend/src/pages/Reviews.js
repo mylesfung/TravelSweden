@@ -22,19 +22,22 @@ export function Reviews() {
 
   return (
     <div className="bg-gray-200 h-[calc(100vh-6.25rem)] w-full overflow-auto">
-        <div className='flex flex-col flex-wrap items-center md:mr-28 p-10 gap-10'>
-            <p className="text-3xl font-semibold">Reviews</p>
-            <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on Swedish nature, history/culture, design innovation, nearby cities, and everything in between.</p>
-            
-            <a href="/pages/SubmitReview" className="inline-flex items-center px-3 py-2 text-lg font-medium 
-            text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
-                Write Review
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-            </a>
-            
-            <div id="review-cards" className="flex flex-wrap gap-10">  
+        <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
+            <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
+                <p className="text-3xl font-semibold">Reviews</p>
+                <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on Swedish nature, history/culture, design innovation, nearby cities, and more.</p>
+                <a href="/pages/SubmitReview" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none 
+                focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
+                    New Review
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </a>
+                <hr className="w-5/6 border-t-2 border-gray-400 my-4" />
+            </div>
+
+            <div id="review-cards" className="flex flex-wrap gap-10 items-center justify-center">  
                 {reviews.map((review, index) => (
                   <ReviewCard
                         key={index}

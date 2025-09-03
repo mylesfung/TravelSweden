@@ -2,7 +2,7 @@ import { HomeWidget } from '../components/HomeWidget';
 
 export function Home() {
     return (
-      <div className="flex flex-wrap w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
+      <div className="flex flex-wrap justify-center w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
         <HomeWidget 
           title={"Reviews"}
           description={"User reviews of various travel experiences and Swedish phenomena."}
@@ -28,11 +28,11 @@ export function Home() {
           }
         />
         <HomeWidget 
-          title={"Weather Report"}
-          description={"Dynamic weather API data for the most populous Swedish cities."}
+          title={"Transit Planner"}
+          description={"Find the best routes across Sweden."}
           main_path={"/pages/Maintenance"}
           button_path={"/"}
-          button_label={"Get Today's Weather"}
+          button_label={"Find Route"}
           button_icon={
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -40,11 +40,11 @@ export function Home() {
           }
         />
         <HomeWidget 
-          title={"Transit Planner"}
-          description={"Find the best routes across Sweden."}
+          title={"Weather Report"}
+          description={"Dynamic weather API data for the most populous Swedish cities."}
           main_path={"/pages/Maintenance"}
           button_path={"/"}
-          button_label={"Find Route"}
+          button_label={"Get Today's Weather"}
           button_icon={
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
