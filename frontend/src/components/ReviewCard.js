@@ -2,7 +2,7 @@ export function ReviewCard({ username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
-                {image && <img className="rounded mx-auto" src={image} alt="review-image" />}
+                {image && <img className="rounded mx-auto" src={`http://localhost:8080${encodeURI(image)}`} alt="review-image" />}
             </a>
             <div className="p-8 text-lg">
                 <a href="#">

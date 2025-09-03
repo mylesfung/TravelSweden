@@ -4,7 +4,9 @@ import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
 import com.mylesfung.travelsweden.service.ReviewService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -30,10 +32,9 @@ public class ReviewController {
             @RequestParam String title,
             @RequestParam Integer rating,
             @RequestParam(required = false) String description,
-            @RequestParam(required = false) byte[] image
+            @RequestParam(required = false) MultipartFile image
 
-    ) {
-        //System.out.println("Description: " + description);
+    ) throws IOException {
         // @RequestBody parses JSON input, whereas
         // @RequestParam parses HTML form inputs
         reviewService.addReview(username, title, rating, description, image);

@@ -15,8 +15,7 @@ public class Review {
     private String title;
     private Integer rating;
     private String description;
-    @Lob
-    private byte[] image;
+    private String imageURL;
 
     // getters and setters
     public Long getId() {return id;}
@@ -28,13 +27,6 @@ public class Review {
     public void setRating(Integer n) {this.rating = n;}
     public String getDescription() {return this.description;}
     public void setDescription(String text) {this.description = text;}
-    public byte[] getImage() {return this.image;}
-    public void setImage(byte[] image) {
-        // use Files/Paths libraries to extract img bytes from img path
-        //byte[] img_bytes = ...
-        //this.image = img_bytes;
-    }
-
-
-
+    public String getImageURL() {return this.imageURL;}
+    public void setImageURL(String path) {this.imageURL = path;}
 }

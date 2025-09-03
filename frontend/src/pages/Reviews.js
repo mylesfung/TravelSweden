@@ -1,5 +1,3 @@
-//import uppsala from '../images/uppsala-biking.jpg';
-//import floss from '../images/floss-picks.jpeg';
 import { ReviewCard } from '../components/ReviewCard';
 import { useState, useEffect } from 'react';
 
@@ -45,7 +43,7 @@ export function Reviews() {
                         title={review.title}
                         rating={review.rating}
                         description={review.description}
-                        image={review.image}
+                        image={review.imageURL}
                     />
                 ))}
             </div>
@@ -72,14 +70,12 @@ export function NewReview() {
       formData.append('title', title);
       formData.append('rating', Number(rating));
       formData.append('description', description);
-      if (image) {  
-        formData.append('image', image);
-      }
+      formData.append('image', image);
 
       try {
         await fetch('http://localhost:8080/api/reviews', { 
           method: "POST", 
-          body: formData,
+          body: formData
         });
       } catch (err) {
         console.error("Error posting new review: ", err);
@@ -136,8 +132,8 @@ export function NewReview() {
   
               <label htmlFor="image">
                 Image upload (optional):
-                <input type="file" value={image} name="image"
-                onChange={e => setImage(e.target.value)}></input>
+                <input type="file" name="image"
+                onChange={e => setImage(e.target.files[0])}></input>  
               </label>
               <br></br>
               <br></br>
