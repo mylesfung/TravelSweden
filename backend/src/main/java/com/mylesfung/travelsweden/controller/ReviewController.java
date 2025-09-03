@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
+@CrossOrigin(origins = "http://localhost:3000") // allow requests from React app
 public class ReviewController {
     private final ReviewRepo reviewRepo;
     private final ReviewService reviewService;
@@ -28,11 +29,13 @@ public class ReviewController {
             @RequestParam String username,
             @RequestParam String title,
             @RequestParam Integer rating,
-            @RequestParam String description,
-            @RequestParam byte[] image
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) byte[] image
 
     ) {
-        // @RequestBody parses JSON, @RequestParam parses HTML form inputs
+        //System.out.println("Description: " + description);
+        // @RequestBody parses JSON input, whereas
+        // @RequestParam parses HTML form inputs
         reviewService.addReview(username, title, rating, description, image);
     }
     @PutMapping

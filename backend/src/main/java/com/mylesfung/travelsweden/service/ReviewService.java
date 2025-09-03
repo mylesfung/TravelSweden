@@ -13,17 +13,15 @@ public class ReviewService {
     }
 
     // Implement controller methods requiring validation, user checks, business rules, etc.
-    public void addReview(String username, String title, Integer rating, String desc, byte[] image) {
+    public void addReview(String username, String title, Integer rating, String description, byte[] image) {
         // Spring Data JPA converts Review => SQL at runtime and inserts into DB
         Review r = new Review();
         r.setUsername(username);
         r.setTitle(title);
-        r.setDesc(desc);
+        r.setDescription(description);
         r.setRating(rating);
-        if (image != null) {
-            // Handle image parsing and setting
-            r.setImage(image);
-        }
+        // Handle image parsing and setting
+        r.setImage(image);
         reviewRepo.save(r);
     }
     public void editReview(Review rvw) {}
