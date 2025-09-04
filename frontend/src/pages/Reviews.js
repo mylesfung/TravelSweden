@@ -23,8 +23,8 @@ export function Reviews() {
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">Reviews</p>
-                <p className="text-xl w-1/2 text-center">A collection of reviews from the TravelSweden community on 
-                Swedish nature, history, culture, design innovation, nearby cities, and more.</p>
+                <p className="text-xl w-1/2 text-center">A collection of user reviews of 
+                southern-Swedish cities, history, culture, nature, design innovation, and more.</p>
                 <a href="/pages/NewReview" className="inline-flex items-center px-4 py-3 text-xl font-medium 
                 text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">

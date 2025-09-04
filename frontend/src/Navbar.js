@@ -11,7 +11,7 @@ export function Navbar() {
                     <img src={Flag} alt="sweden-flag" />
                 </div>
                 <div>
-                    <Link to="/" className='text-2xl italic'>TravelSweden</Link>
+                    <Link to="/" className='text-2xl italic'>TravelSkåne</Link>
                 </div>
             </div>
             <div>

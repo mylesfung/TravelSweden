@@ -15,7 +15,7 @@ module.exports = {
 /**
  * Tailwind CSS Pros and Cons vs. Vanilla CSS
  * 
- * - PRO: Cleaner/more elegant than inline CSS 
+ * - PRO: Arguably cleaner/more elegant than inline CSS 
  * - PRO: No .css files necessary
  * - PRO: Good for small and unique style needs 
  * 

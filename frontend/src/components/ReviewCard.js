@@ -1,11 +1,11 @@
 export function ReviewCard({ username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <a>
                 {image && <img className="rounded mx-auto" src={`http://localhost:8080${encodeURI(image)}`} alt="review-image" />}
             </a>
             <div className="p-8 text-lg">
-                <a href="#">
+                <a>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight 
                     text-gray-900 dark:text-white">{title}</h5>
                 </a>
@@ -18,7 +18,7 @@ export function ReviewCard({ username, title, rating, description, image }) {
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
-                <a href="#" className="inline-flex items-center px-3 py-2 font-medium 
+                <a href="../pages/Maintenance" className="inline-flex items-center px-3 py-2 font-medium 
                 text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 
                 dark:focus:ring-blue-800">

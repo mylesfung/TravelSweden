@@ -5,7 +5,7 @@ export function Home() {
       <div className="flex flex-wrap justify-center w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
         <HomeWidget 
           title={"Reviews"}
-          description={"User reviews of various travel experiences and Swedish phenomena."}
+          description={"User reviews of various niche travel experiences and phenomena in the Skåne region."}
           main_path={"/pages/Reviews"}
           button_path={"/pages/NewReview"}
           button_label={"Write a Review"}
@@ -19,7 +19,7 @@ export function Home() {
           title={"Journal"}
           description={"Your personal travel journal."}
           main_path={"/pages/Maintenance"}
-          button_path={"/"}
+          button_path={"/pages/Maintenance"}
           button_label={"New Entry"}
           button_icon={
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
@@ -29,9 +29,9 @@ export function Home() {
         />
         <HomeWidget 
           title={"Transit Planner"}
-          description={"Find the best routes across Sweden."}
-          main_path={"/pages/Maintenance"}
-          button_path={"/"}
+          description={"Find the best routes across Skåne using the Skånetrafiken app."}
+          main_path={"https://www.skanetrafiken.se/"}
+          button_path={"https://www.skanetrafiken.se/"}
           button_label={"Find Route"}
           button_icon={
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -41,9 +41,9 @@ export function Home() {
         />
         <HomeWidget 
           title={"Weather Report"}
-          description={"Dynamic weather API data for the most populous Swedish cities."}
-          main_path={"/pages/Maintenance"}
-          button_path={"/"}
+          description={"Comprehensive weather data courtesy of Weather Spark."}
+          main_path={"https://weatherspark.com/y/76106/Average-Weather-in-Malm%C3%B6-Sweden-Year-Round"}
+          button_path={"https://weatherspark.com/y/76106/Average-Weather-in-Malm%C3%B6-Sweden-Year-Round"}
           button_label={"Get Today's Weather"}
           button_icon={
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
