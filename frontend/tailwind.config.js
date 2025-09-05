@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'stockholm': "url('/public/stockholm.jpg')",
-        'street': "url('/public/street.jpg')",
+        'street': "url('/src/images/street.jpg')",
       }
     },
   },

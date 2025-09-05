@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router";
 import { Home } from './pages/Home';
 import { Layout } from './Layout';
 import { Lodging, Transit, Food } from "./pages/SidebarInfo";
-import { Maintenance } from "./pages/Maintenance";
+import { Maintenance, AccountRequired } from "./pages/StatusMessages";
 import { AllReviews, NewReview, MyReviews, EditReview } from './services/UserReviews';
 import { CreateAccount, SignIn, MyAccount } from './services/UserLogin';
 
@@ -18,6 +18,7 @@ export function App() {
                     <Route path="transit" element={<Transit />} />
                     <Route path="food" element={<Food />} />
                     <Route path="maintenance" element={<Maintenance />} />
+                    <Route path="account-required" element={<AccountRequired />} />
                 </Route>
                 <Route path="services">
                     <Route path="reviews" element={<AllReviews />} />
