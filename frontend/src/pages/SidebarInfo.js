@@ -49,8 +49,8 @@ export function Transit() {
   );
 }
 
-export function Food() {
-  const title_text = "Food";
+export function Cuisine() {
+  const title_text = "Cuisine";
   const body_text = `Skåne is a culinary hotspot in Sweden, known for blending traditional flavors 
   with modern innovation. The region’s fertile farmland and proximity to the sea mean local produce 
   and fresh seafood are central to the dining scene. In Malmö, visitors can find a vibrant international 
