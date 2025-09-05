@@ -25,7 +25,7 @@ export function AllReviews() {
                 <p className="text-3xl font-semibold">Reviews</p>
                 <p className="text-xl w-1/2 text-center">A collection of user reviews of 
                 Swedish cities, towns, history, culture, nature, design innovation, and more.</p>
-                <a href="/pages/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
                 text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
                     New Review
@@ -144,7 +144,7 @@ export function NewReview() {
                 type="submit" 
                 value="Submit Review">                      
               </input>
-              <a href="/pages/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
+              <a href="/services/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
             </form>
           </div>
         </div>
@@ -175,7 +175,7 @@ export function NewReview() {
           <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
               <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                   <p className="text-3xl font-semibold">My Reviews</p>
-                  <a href="/pages/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                  <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
                   text-center text-white bg-sky-700 rounded-lg hover:bg-cyan-800 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
                       New Review
@@ -275,7 +275,7 @@ export function NewReview() {
                 type="submit" 
                 value="Submit Edits">                      
               </input>
-              <a href="/pages/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
+              <a href="/services/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
             </form>
           </div>
         </div>

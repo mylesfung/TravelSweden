@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
-import { Home } from './all-pages/Home';
+import { Home } from './pages/Home';
 import { Layout } from './Layout';
-import { CreateAccount, SignIn, MyAccount } from './all-pages/UserLogin';
-import { AllReviews, NewReview, MyReviews, EditReview } from './all-pages/UserReviews';
-import { Lodging, Transit, Food } from "./all-pages/SidebarInfo";
-import { Maintenance } from "./all-pages/Maintenance";
+import { Lodging, Transit, Food } from "./pages/SidebarInfo";
+import { Maintenance } from "./pages/Maintenance";
+import { AllReviews, NewReview, MyReviews, EditReview } from './services/UserReviews';
+import { CreateAccount, SignIn, MyAccount } from './services/UserLogin';
 
 export function App() {
     return (
@@ -17,6 +17,9 @@ export function App() {
                     <Route path="lodging" element={<Lodging />} />
                     <Route path="transit" element={<Transit />} />
                     <Route path="food" element={<Food />} />
+                    <Route path="maintenance" element={<Maintenance />} />
+                </Route>
+                <Route path="services">
                     <Route path="reviews" element={<AllReviews />} />
                     <Route path="new-review" element={<NewReview />} />
                     <Route path="my-reviews" element={<MyReviews />} />
@@ -24,7 +27,6 @@ export function App() {
                     <Route path="create-account" element={<CreateAccount />} />
                     <Route path="sign-in" element={<SignIn />} />
                     <Route path="my-account" element={<MyAccount />} />
-                    <Route path="maintenance" element={<Maintenance />} />
                 </Route>
             </Route>  
         </Routes>

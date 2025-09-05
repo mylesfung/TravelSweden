@@ -6,8 +6,8 @@ export function Home() {
         <HomeWidget 
           title={"Reviews"}
           description={"User reviews of various niche travel experiences and phenomena in the Skåne region."}
-          main_path={"/pages/reviews"}
-          button_path={"/pages/new-review"}
+          main_path={"/services/reviews"}
+          button_path={"/services/new-review"}
           button_label={"Write a Review"}
           button_icon={
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
