@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 
 import { Home } from './pages/Home';
 import { Layout } from './Layout';
-import { Lodging, Transit, Food } from "./pages/SidebarInfo";
+import { Lodging, Transit, Food, Nature, History, Design } from "./pages/SidebarInfo";
 import { Maintenance, AccountRequired } from "./pages/StatusMessages";
 import { AllReviews, NewReview, MyReviews, EditReview } from './services/UserReviews';
 import { CreateAccount, SignIn, MyAccount } from './services/UserLogin';
@@ -17,6 +17,9 @@ export function App() {
                     <Route path="lodging" element={<Lodging />} />
                     <Route path="transit" element={<Transit />} />
                     <Route path="food" element={<Food />} />
+                    <Route path="nature" element={<Nature />} />
+                    <Route path="history" element={<History />} />
+                    <Route path="design" element={<Design />} />
                     <Route path="maintenance" element={<Maintenance />} />
                     <Route path="account-required" element={<AccountRequired />} />
                 </Route>
