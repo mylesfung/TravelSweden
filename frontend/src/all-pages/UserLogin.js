@@ -118,3 +118,29 @@ export function SignIn() {
     </div>
   );
 }
+
+export function MyAccount() {
+  return (
+      <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
+          <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
+              <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
+                  <p className="text-3xl font-semibold">My Account</p>
+                  <p className="text-lg font-semibold">Username: </p>
+                  <p className="text-lg font-semibold">Password: </p>
+                  <a href="/pages/new-review" className="inline-flex items-center px-4 py-2 text-md 
+                  text-center text-white bg-sky-600 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none 
+                  focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
+                      Change username
+                  </a>
+                  <a href="/pages/new-review" className="inline-flex items-center px-4 py-2 text-md 
+                  text-center text-white bg-sky-600 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none 
+                  focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
+                      Change password
+                  </a>
+              </div>
+
+          
+          </div>
+      </div>
+    );
+}
