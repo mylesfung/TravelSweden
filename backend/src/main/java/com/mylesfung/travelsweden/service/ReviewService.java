@@ -26,7 +26,7 @@ public class ReviewService {
         r.setDescription(description);
         r.setRating(rating);
         if (image != null && !image.isEmpty()) {
-            // Save file to disk
+            // Save image file to local storage
             String uploadDir = "uploads/";
             String fileName = UUID.randomUUID() + "-" + image.getOriginalFilename();
             Path filePath = Paths.get(uploadDir + fileName);
