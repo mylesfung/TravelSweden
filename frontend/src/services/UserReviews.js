@@ -63,10 +63,15 @@ export function NewReview() {
     async function handleSubmit(e) {
       // e : 'SyntheticEvent' object automatically passed in by broswer
       //      upon event listener trigger
-      e.preventDefault(); // stop auto-page reload before async op completes
+      e.preventDefault(); // stop auto-page reload before async form submission completes
+
+      // if ( User not logged in ) { redirect to AccountRequired }
+      // else ( setUsername( currentUser ) ) and append to formData below
+
+
 
       const formData = new FormData();
-      formData.append('username', "Placeholder_Myles_User"); // replace with username from auth context 
+      formData.append('username', "Placeholder_Myles_User"); 
       formData.append('title', title);
       formData.append('rating', Number(rating));
       formData.append('description', description);
@@ -160,6 +165,8 @@ export function NewReview() {
       async function getMyReviews() {
         try {
           // GET reviews where username = current user 
+
+          
           const response = await fetch(`http://localhost:8080/api/reviews`);
           const data = await response.json();
           setMyReviews(data);

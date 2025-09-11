@@ -3,11 +3,13 @@ import Flag from "../images/sweden-flag.png";
 
 export function CreateAccount() {
 
+  // POST (username, password) to backend and create new user
+
 
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-6.25rem)] w-full">
-      <div className='flex flex-wrap flex-col justify-center px-6 py-12 lg:px-8 md:mr-40 p-10 gap-10'>
+      <div className='flex flex-wrap flex-col items-center px-6 py-12 lg:px-8 md:mr-40 p-10 gap-10'>
           <div className="sm:mx-auto sm:max-w-sm">
             <img className="mx-auto h-10 w-auto"  src={Flag} alt="sweden-flag" />
             <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
@@ -15,7 +17,7 @@ export function CreateAccount() {
               </h2>
           </div>
 
-          <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-5 w-96">
             <form className="space-y-6" action="#" method="POST">
               <div>
                 <label htmlFor="email" className="block text-lg font-medium text-gray-900">
@@ -39,8 +41,10 @@ export function CreateAccount() {
                 </div>
               </div>
 
-              <div>
-                <button type="submit" className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 
+              <br></br>
+
+              <div className="flex justify-center">
+                <button type="submit" className="flex w-96 justify-center rounded-md bg-sky-600 px-3 py-1.5 
                 text-lg font-semibold text-white shadow-sm hover:bg-sky-700 focus-visible:outline 
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700">
                   Create account
@@ -61,12 +65,15 @@ export function CreateAccount() {
 
 export function SignIn() {
 
+  // POST user, set token in local storage, redirect to home page
+  // Change 'Sign In' to 'My Account'
+
 
 
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-6.25rem)] w-full">
-      <div className='flex flex-wrap flex-col justify-center px-6 py-12 lg:px-8 md:mr-40 p-10 gap-10'>
+      <div className='flex flex-wrap flex-col items-center px-6 py-12 lg:px-8 md:mr-40 p-10 gap-10'>
           <div className="sm:mx-auto sm:max-w-sm">
             <img className="mx-auto h-10 w-auto"  src={Flag} alt="sweden-flag" />
             <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
@@ -74,7 +81,7 @@ export function SignIn() {
               </h2>
           </div>
 
-          <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-5 w-96">
             <form className="space-y-6" action="#" method="POST">
               <div>
                 <label htmlFor="email" className="block text-lg font-medium text-gray-900">
@@ -97,6 +104,8 @@ export function SignIn() {
                   </input>
                 </div>
               </div>
+
+              <br></br>
 
               <div>
                 <button type="submit" className="flex w-full justify-center rounded-md bg-sky-600 
@@ -120,6 +129,11 @@ export function SignIn() {
 }
 
 export function MyAccount() {
+
+  // functions to change username/password
+
+
+
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
           <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
