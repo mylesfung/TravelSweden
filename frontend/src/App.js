@@ -5,8 +5,8 @@ import { Home } from './pages/Home';
 import { Layout } from './Layout';
 import { Lodging, Transit, Cuisine, Nature, History, Design } from "./pages/SidebarInfo";
 import { Maintenance, AccountRequired } from "./pages/StatusMessages";
-import { AllReviews, NewReview, MyReviews, EditReview } from './services/UserReviews';
-import { CreateAccount, SignIn, MyAccount } from './services/UserLogin';
+import { AllReviews, NewReview, MyReviews, EditReview } from './services/Reviews';
+import { CreateAccount, SignIn, MyAccount, EditAccount } from './services/UserLogin';
 
 export function App() {
     return (
@@ -31,6 +31,7 @@ export function App() {
                     <Route path="create-account" element={<CreateAccount />} />
                     <Route path="sign-in" element={<SignIn />} />
                     <Route path="my-account" element={<MyAccount />} />
+                    <Route path="edit-account" element={<EditAccount />} />
                 </Route>
             </Route>  
         </Routes>

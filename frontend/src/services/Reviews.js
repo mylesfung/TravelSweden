@@ -149,7 +149,7 @@ export function NewReview() {
                 type="submit" 
                 value="Submit Review">                      
               </input>
-              <a href="/services/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
+              <a href="/services/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
             </form>
           </div>
         </div>

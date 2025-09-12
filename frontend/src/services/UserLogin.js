@@ -1,4 +1,5 @@
 import Flag from "../images/sweden-flag.png";
+import { useState, useEffect } from 'react';
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
@@ -144,17 +145,13 @@ export function MyAccount() {
                   <a href="/services/new-review" className="inline-flex items-center px-4 py-2 text-md 
                   text-center text-white bg-sky-600 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
-                      Change username
+                      Edit username/password
                   </a>
                   <a href="/services/new-review" className="inline-flex items-center px-4 py-2 text-md 
-                  text-center text-white bg-sky-600 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none 
+                  text-center text-white bg-red-800 rounded-lg hover:bg-red-900 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
-                      Change password
-                  </a>
-                  <a href="/services/new-review" className="inline-flex items-center px-4 py-2 text-md 
-                  text-center text-white bg-red-800 rounded-lg hover:bg-cyan-700 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-sky-800 dark:hover:bg-sky-700 dark:focus:ring-blue-800">
-                      Delete account
+                      Delete account <br></br>
+                      (warning: cannot be undone!)
                   </a>
               </div>
 
@@ -163,3 +160,56 @@ export function MyAccount() {
       </div>
     );
 }
+
+export function EditAccount() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    // PUT (new username, new password) to backend
+
+
+    // redirect to MyAccount page
+
+  }
+
+  return (
+      <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full">
+        <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
+          <div className="text-3xl font-semibold">
+            Edit Account Information
+          </div>
+          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-lg
+          shadow dark:bg-gray-800 dark:border-gray-700">
+            
+            <form method="post" onSubmit={handleSubmit}>
+              <label htmlFor="title">
+                Username:
+                <input className="w-full p-2 rounded-md"
+                 type="text" value={username} name="username"
+                 onChange={e => setUsername(e.target.value)}></input>
+              </label>
+              <br></br>
+              <br></br>
+              <label htmlFor="title">
+                Password:
+                <input className="w-full p-2 rounded-md"
+                 type="text" value={password} name="password"
+                 onChange={e => setPassword(e.target.value)}></input>
+              </label>
+              <br></br>
+              <br></br>
+  
+              <input 
+                className="rounded-md p-2 text-white bg-sky-700 rounded-lg hover:bg-cyan-800" 
+                type="submit" 
+                value="Submit Edits">                      
+              </input>
+              <a href="/services/my-account" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
