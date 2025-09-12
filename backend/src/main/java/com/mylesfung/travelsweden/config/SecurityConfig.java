@@ -36,6 +36,8 @@ public class SecurityConfig {
         return http.build();
     }
 
+    // Bean name does not matter unless there are multiple beans of the same type
+    // in which case use annotation @Autowired @Qualifier("beanName")
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

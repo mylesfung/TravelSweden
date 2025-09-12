@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/api/services/reviews")
 @CrossOrigin(origins = "http://localhost:3000") // allow requests from React app
 public class ReviewController {
     private final ReviewRepo reviewRepo;

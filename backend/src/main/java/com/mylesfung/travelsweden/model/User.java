@@ -6,10 +6,12 @@ import jakarta.persistence.*;
 public class User {
     public User() {}
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long uid;
     private String username;
     private String password;
 
+    public Long getUid() {return this.uid;}
     public String getUsername() {
         return this.username;
     }

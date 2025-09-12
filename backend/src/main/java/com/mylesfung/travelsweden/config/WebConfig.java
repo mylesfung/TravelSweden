@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Makes local file uploads available to browser HTTP
+        // CORS: Makes local file uploads available to browser HTTP
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:uploads/");
     }
