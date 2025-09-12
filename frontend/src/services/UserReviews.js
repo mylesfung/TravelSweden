@@ -8,7 +8,7 @@ export function AllReviews() {
   useEffect(() => {
     async function getReviews() {
       try {
-        const response = await fetch('http://localhost:8080/api/reviews');
+        const response = await fetch('http://localhost:8080/api/services/reviews');
         const data = await response.json();
         setReviews(data);
       } catch (err) {
@@ -78,7 +78,7 @@ export function NewReview() {
       formData.append('image', image);
 
       try {
-        await fetch('http://localhost:8080/api/reviews', { 
+        await fetch('http://localhost:8080/api/services/reviews', { 
           method: "POST", 
           body: formData
         });
@@ -166,8 +166,8 @@ export function NewReview() {
         try {
           // GET reviews where username = current user 
 
-          
-          const response = await fetch(`http://localhost:8080/api/reviews`);
+
+          const response = await fetch(`http://localhost:8080/api/services/reviews`);
           const data = await response.json();
           setMyReviews(data);
         } catch (err) {
