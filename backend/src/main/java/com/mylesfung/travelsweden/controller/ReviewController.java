@@ -3,6 +3,7 @@ package com.mylesfung.travelsweden.controller;
 import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
 import com.mylesfung.travelsweden.service.ReviewService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,17 +11,12 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor    // inject constructors automatically
 @RequestMapping("/api/services/reviews")
 @CrossOrigin(origins = "http://localhost:3000") // allow requests from React app
 public class ReviewController {
     private final ReviewRepo reviewRepo;
     private final ReviewService reviewService;
-    // Constructor injections :
-    //  Spring Data JPA auto-generates repo and service implementation
-    public ReviewController(ReviewRepo reviewRepo, ReviewService reviewService) {
-        this.reviewRepo = reviewRepo;
-        this.reviewService = reviewService;
-    }
 
     @GetMapping
     public List<Review> getAllReviews() {
@@ -44,8 +40,5 @@ public class ReviewController {
         reviewService.editReview(rvw);
     }
     @DeleteMapping
-    public void deleteReview(Review rvw) {
-        reviewService.deleteReview(rvw);
-    }
-
+    public void deleteReview(@RequestBody Long id) {reviewRepo.deleteById(id);}
 }

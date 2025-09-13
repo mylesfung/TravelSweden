@@ -5,8 +5,9 @@ import lombok.Data;
 // Cannot use 'public record Review' DTO bc JPA requires no-arg constructor
 // and fields need to be mutable to reflect DB updates / business logic methods
 
-@Data @Entity @Table(name = "reviews")
-public class Review {
+@Entity
+@Table(name = "reviews")
+@Data public class Review {
     public Review() {}
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
