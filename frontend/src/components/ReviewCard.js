@@ -4,7 +4,7 @@ export function PublicReviewCard({ username, title, rating, description, image }
             <a>
                 {image && <img className="rounded mx-auto" src={`http://localhost:8080${encodeURI(image)}`} alt="review-image" />}
             </a>
-            <div className="p-8 text-lg">
+            <div className="p-8 text-md">
                 <a>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight 
                     text-gray-900 dark:text-white">{title}</h5>
@@ -39,7 +39,7 @@ export function PrivateReviewCard({ username, title, rating, description, image 
             <a>
                 {image && <img className="rounded mx-auto" src={`http://localhost:8080${encodeURI(image)}`} alt="review-image" />}
             </a>
-            <div className="p-8 text-lg">
+            <div className="p-8 text-md">
                 <a>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight 
                     text-gray-900 dark:text-white">{title}</h5>

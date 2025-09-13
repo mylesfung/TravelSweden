@@ -23,9 +23,9 @@ export function AllReviews() {
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">Reviews</p>
-                <p className="text-xl w-1/2 text-center">A collection of user reviews of 
+                <p className="text-lg w-1/2 text-center">A collection of user reviews of 
                  cities, towns, history, culture, nature, design innovation, and more.</p>
-                <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     New Review
@@ -99,7 +99,7 @@ export function NewReview() {
           <div className="text-3xl font-semibold">
             New Review
           </div>
-          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-lg
+          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
           shadow dark:bg-gray-800 dark:border-blue-950">
             
             <form method="post" onSubmit={handleSubmit}>
@@ -182,7 +182,7 @@ export function NewReview() {
           <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
               <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                   <p className="text-3xl font-semibold">My Reviews</p>
-                  <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-xl font-medium 
+                  <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                   text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       New Review
@@ -232,7 +232,7 @@ export function NewReview() {
           <div className="text-3xl font-semibold">
             Edit Review
           </div>
-          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-lg
+          <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
           shadow dark:bg-gray-800 dark:border-blue-950">
             
             <form method="post" onSubmit={handleSubmit}>

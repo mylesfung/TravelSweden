@@ -10,7 +10,7 @@ export function InfoCard({ title, body }) {
             </h6>
             <hr></hr>
             <br></br>
-            <p className="font-normal text-white text-lg dark:text-gray-400">
+            <p className="font-normal text-white text-md dark:text-gray-400">
                 {body}
             </p>
             </a>
