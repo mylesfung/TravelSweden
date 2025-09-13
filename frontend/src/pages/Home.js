@@ -5,7 +5,7 @@ export function Home() {
       <div className="flex flex-wrap justify-center w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
         <HomeWidget 
           title={"Reviews"}
-          description={"Read user reviews of various niche travel experiences and phenomena in the Skåne region."}
+          description={"Read user reviews of various travel experiences and phenomena in the Skåne region."}
           main_path={"/services/reviews"}
           button_path={"/services/new-review"}
           button_label={"Write a Review"}

@@ -1,14 +1,13 @@
 import { Link, Outlet } from 'react-router';
-import Flag from "./images/sweden-flag.png";
-
+import Flag from "./images/skånska-flaggan.png";
 // svg icons from https://heroicons.com/
 
 export function Navbar() {
     return (
-        <div className="flex justify-between p-5 items-center border-b-4 border-double bg-gray-100 border-sky-800">
+        <div className="flex justify-between p-5 items-center border-b-4 border-double bg-gray-100 border-blue-950">
             <div className="flex gap-4 items-center">
-                <div className="size-14">
-                    <img src={Flag} alt="sweden-flag" />
+                <div className="size-14 translate-y-1">
+                    <img className="rounded-sm" src={Flag} alt="skånska-flaggan"/>
                 </div>
                 <div>
                     <Link to="/" className='text-2xl italic'>TravelSkåne</Link>

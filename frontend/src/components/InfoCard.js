@@ -4,7 +4,7 @@ export function InfoCard({ title, body }) {
     return (
         <div className="flex flex-col flex-wrap items-center text-center w-full h-[calc(100vh-6.25rem)] bg-street bg-cover p-10 gap-10">
             <a className="max-w-3xl mr-36 opacity-95 block h-full p-8 
-            bg-sky-700 border border-gray-300 rounded-sm shadow">
+            bg-blue-900 border border-gray-300 rounded-sm shadow">
             <h6 className="mb-2 text-3xl font-bold tracking-tight text-white dark:text-white">
                 {title}
             </h6>

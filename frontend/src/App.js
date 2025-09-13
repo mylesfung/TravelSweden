@@ -6,7 +6,7 @@ import { Layout } from './Layout';
 import { Lodging, Transit, Cuisine, Nature, History, Design } from "./pages/SidebarInfo";
 import { Maintenance, AccountRequired } from "./pages/StatusMessages";
 import { AllReviews, NewReview, MyReviews, EditReview } from './services/Reviews';
-import { CreateAccount, SignIn, MyAccount, EditAccount } from './services/UserLogin';
+import { CreateAccount, SignIn, MyAccount, EditAccount } from './services/Account';
 
 export function App() {
     return (
