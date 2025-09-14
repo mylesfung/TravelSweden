@@ -8,7 +8,7 @@ import lombok.Data;
 @Data public class User {
     public User() {}
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uid;
+    private Long id;
     private String username;
     private String password;
 
