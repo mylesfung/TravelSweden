@@ -1,0 +1,57 @@
+package com.mylesfung.travelsweden.service;
+
+import com.mylesfung.travelsweden.model.Account;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.mylesfung.travelsweden.repository.AccountRepo;
+import java.util.Collections;
+
+// UserDetailsService only contains loadByUsername method
+@Service @RequiredArgsConstructor
+public class AccountService implements UserDetailsService {
+    private final AccountRepo accountRepo;
+    @Autowired  // For same-type beans use  @Autowired @Qualifier("beanName")
+    private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        try {
+            Account account = accountRepo.findByUsername(username);
+            return new org.springframework.security.core.userdetails.User(
+                    account.getUsername(),
+                    account.getPassword(),
+                    Collections.emptyList()
+            );
+        } catch (UsernameNotFoundException e) {
+            System.out.println("Username not found: " + e);
+            return null;
+        }
+    }
+
+    public ResponseEntity<String> createAccount(String username, String password) {
+        Account newAccount = new Account();
+        newAccount.setUsername(username);
+        newAccount.setPassword(passwordEncoder.encode(password));
+        // Check for existing username in DB
+        boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
+        if (userAlreadyExists) {
+            return ResponseEntity.ok("Failed to create account: username taken");
+        }
+        accountRepo.save(newAccount);
+        return ResponseEntity.ok("Account created!");
+    }
+
+    public ResponseEntity<String> editAccount(Long uid, String username, String password) {
+        Account currentAccount = accountRepo.getById(uid);
+        currentAccount.setUsername(username);
+        currentAccount.setPassword(password);
+        accountRepo.save(currentAccount);
+        return ResponseEntity.ok("Account information updated!");
+    }
+}

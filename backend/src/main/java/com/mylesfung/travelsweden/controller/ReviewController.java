@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor    // inject constructors automatically
-@RequestMapping("/api/services/reviews")
+@RequestMapping("/api/service/reviews")
 @CrossOrigin(origins = "http://localhost:3000") // allow requests from React app
 public class ReviewController {
     private final ReviewRepo reviewRepo;
@@ -21,6 +21,10 @@ public class ReviewController {
     @GetMapping
     public List<Review> getAllReviews() {
         return reviewRepo.findAll();
+    }
+    @GetMapping("/my-reviews")
+    public List<Review> getAllReviewsByUsername(@RequestBody String username) {
+        return reviewRepo.findAllByUsername(username);
     }
     @PostMapping
     public void addReview(

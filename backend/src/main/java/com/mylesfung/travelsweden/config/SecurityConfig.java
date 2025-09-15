@@ -19,9 +19,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // disable in dev to allow React fetch()
                 .authorizeHttpRequests(auth -> auth
                         // public pages do not require login
-                        .requestMatchers("/api/pages/**").permitAll()
-                        .requestMatchers("/api/services/reviews").permitAll()
-                        .requestMatchers("/api/services/create-account").permitAll()
+                        .requestMatchers("/api/static/**").permitAll()
+                        .requestMatchers("/api/service/reviews").permitAll()
+                        .requestMatchers("/api/service/new-review").permitAll()
+                        .requestMatchers("/api/service/create-account").permitAll()
                         .requestMatchers("/login").permitAll()
                         // all other endpoints require secure login
                         .anyRequest().authenticated()
@@ -30,7 +31,7 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .usernameParameter("username")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/api/services/account")
+                        .defaultSuccessUrl("/api/service/account")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
@@ -41,7 +42,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // for defining custom auth schemes (JWT, OAuth, etc.)
+    // for defining custom authentication schemes (JWT, OAuth, etc.)
     @Bean
     public AuthenticationManager authManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

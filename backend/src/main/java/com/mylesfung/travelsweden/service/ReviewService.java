@@ -35,7 +35,7 @@ public class ReviewService {
         }
         reviewRepo.save(review);
     }
-    public void editReview(Review rvw) {
-        // Logged-in users can edit reviews by ID
-    }
+
+    // PUT Review
+    public void editReview(Review rvw) {}
 }
