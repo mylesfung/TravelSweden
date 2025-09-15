@@ -1,6 +1,6 @@
 import { PublicReviewCard, PrivateReviewCard } from '../components/ReviewCard';
 import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../UserContext';
+import { AccountContext } from '../AccountContext';
 
 export function AllReviews() {
 
@@ -61,14 +61,13 @@ export function NewReview() {
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
 
-    const currentUser = useContext(UserContext);
-    // setUsername(currentUser?.username);    triggers infinite re-render loop
+    const currentAccount = useContext(AccountContext);
     
     async function handleSubmit(e) {
       // e : 'SyntheticEvent' object automatically passed in by broswer upon event listener trigger
       e.preventDefault(); // stop auto-page reload before async form submission completes
 
-      setUsername(currentUser.username);
+      setUsername(currentAccount.username);
 
       const formData = new FormData();
       formData.append('username', username); 
