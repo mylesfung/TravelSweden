@@ -1,4 +1,6 @@
-export function PublicReviewCard({ username, title, rating, description, image }) {
+import { deleteReview } from "../service/Reviews";
+
+export function PublicReviewCard({ id, username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
@@ -32,7 +34,7 @@ export function PublicReviewCard({ username, title, rating, description, image }
     )
 }
 
-export function PrivateReviewCard({ username, title, rating, description, image }) {
+export function PrivateReviewCard({ id, username, title, rating, description, image }) {
 
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
@@ -59,7 +61,7 @@ export function PrivateReviewCard({ username, title, rating, description, image 
                 dark:focus:ring-blue-800">
                     Edit review
                 </a>
-                <a className="inline-flex items-center ml-2 px-3 py-2 font-medium 
+                <a onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
                 text-center text-white bg-red-800 rounded-lg hover:bg-blue-900 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">

@@ -1,10 +1,12 @@
 import Flag from "../images/skånska-flaggan.png";
 import { useState, useEffect, useContext } from 'react';
+import { AccountContext } from "../AccountContext";
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
-
   // POST (username, password) to backend and create new user
+
+
 
 
 
@@ -65,12 +67,12 @@ export function CreateAccount() {
 }
 
 export function SignIn() {
-
   // POST user, set token in local storage, redirect to home page
-  // Change 'Sign In' to 'My Account'
 
 
 
+
+  // On sign-in: change text 'Sign In' to 'My Account
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-6.25rem)] w-full">
@@ -132,10 +134,11 @@ export function SignIn() {
 export function MyAccount() {
 
   const account = useContext(AccountContext);
+  const username = account.username;
 
   async function deleteAccount() {
     try {
-      const response = await fetch("https://localhost:8080/api/service/account", {
+      const response = await fetch("http://localhost:8080/api/service/account", {
         method: "DELETE",
         headers: {"Content-Type:": "application/json"},
         body: JSON.stringify(account.id)
@@ -152,7 +155,7 @@ export function MyAccount() {
           <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
               <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                   <p className="text-3xl font-semibold">My Account</p>
-                  <p className="text-md font-semibold">Username: </p>
+                  <p className="text-md font-semibold">Username: {username}</p>
                   <a href="/service/edit-account" className="inline-flex items-center px-4 py-2 text-md 
                   text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
@@ -181,7 +184,10 @@ export function EditAccount() {
     // PUT (new username, new password) to backend
 
 
-    // redirect to MyAccount page
+    
+    
+
+
 
   }
 

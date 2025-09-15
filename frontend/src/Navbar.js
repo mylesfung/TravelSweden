@@ -1,8 +1,16 @@
-import { Link, Outlet } from 'react-router';
 import Flag from "./images/skånska-flaggan.png";
+import { Link, Outlet } from 'react-router';
+import { useContext } from 'react';
+import { AccountContext } from './AccountContext';
 // svg icons from https://heroicons.com/
 
 export function Navbar() {
+
+    const account = useContext(AccountContext);
+
+    const route = account.username == "Anonymous" ? "/service/sign-in" : "/service/my-account";
+    const text = account.username == "Anonymous" ? "Sign In" : "My Account";
+
     return (
         <div className="flex justify-between p-5 items-center border-b-4 border-double bg-gray-100 border-blue-950">
             <div className="flex gap-4 items-center">
@@ -26,7 +34,7 @@ export function Navbar() {
             </div>
             <div className='text-xl flex items-center gap-3'>
                 <div>
-                    <Link to="/service/sign-in">Sign In</Link>
+                    <Link to={route}>{text}</Link>
                 </div>
                 <div>
                     <Link to="/service/sign-in">
