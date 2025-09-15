@@ -1,5 +1,5 @@
 import Flag from "../images/skånska-flaggan.png";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
@@ -131,10 +131,14 @@ export function SignIn() {
 
 export function MyAccount() {
 
+  const account = useContext(AccountContext);
+
   async function deleteAccount() {
     try {
       const response = await fetch("https://localhost:8080/api/service/account", {
-        method: 'DELETE'
+        method: "DELETE",
+        headers: {"Content-Type:": "application/json"},
+        body: JSON.stringify(account.id)
       });
       const status = await response.json();
       console.log(status);
