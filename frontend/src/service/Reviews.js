@@ -1,5 +1,6 @@
 import { PublicReviewCard, PrivateReviewCard } from '../components/ReviewCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 export function AllReviews() {
 
@@ -8,7 +9,7 @@ export function AllReviews() {
   useEffect(() => {
     async function getReviews() {
       try {
-        const response = await fetch('http://localhost:8080/api/services/reviews');
+        const response = await fetch('http://localhost:8080/api/service/reviews');
         const data = await response.json();
         setReviews(data);
       } catch (err) {
@@ -25,7 +26,7 @@ export function AllReviews() {
                 <p className="text-3xl font-semibold">Reviews</p>
                 <p className="text-lg w-1/2 text-center">A collection of user reviews of 
                  cities, towns, history, culture, nature, design innovation, and more.</p>
-                <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     New Review
@@ -59,29 +60,30 @@ export function NewReview() {
     const [rating, setRating] = useState(1);
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+
+    const currentUser = useContext(UserContext);
+    // setUsername(currentUser?.username);    triggers infinite re-render loop
     
     async function handleSubmit(e) {
-      // e : 'SyntheticEvent' object automatically passed in by broswer
-      //      upon event listener trigger
+      // e : 'SyntheticEvent' object automatically passed in by broswer upon event listener trigger
       e.preventDefault(); // stop auto-page reload before async form submission completes
 
-      // if ( User not logged in ) { redirect to AccountRequired }
-      // else ( setUsername( currentUser ) ) and append to formData below
-
-
+      setUsername(currentUser.username);
 
       const formData = new FormData();
-      formData.append('username', "Placeholder_Myles_User"); 
+      formData.append('username', username); 
       formData.append('title', title);
-      formData.append('rating', Number(rating));
+      formData.append('rating', rating);
       formData.append('description', description);
       formData.append('image', image);
 
       try {
-        await fetch('http://localhost:8080/api/services/reviews', { 
+        const response = await fetch('http://localhost:8080/api/service/reviews', { 
           method: "POST", 
           body: formData
         });
+        const status = await response.json();
+        console.log(status);
       } catch (err) {
         console.error("Error posting new review: ", err);
       }
@@ -116,11 +118,11 @@ export function NewReview() {
                 Rating out of 5:
                 <select className="p-1 ml-2 rounded-md" value={rating} name="rating"
                 onChange={e => setRating(e.target.value)}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
                 </select>
               </label>
               <br></br>
@@ -149,7 +151,7 @@ export function NewReview() {
                 type="submit" 
                 value="Submit Review">                      
               </input>
-              <a href="/services/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
+              <a href="/service/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
             </form>
           </div>
         </div>
@@ -164,10 +166,7 @@ export function NewReview() {
     useEffect(() => {
       async function getMyReviews() {
         try {
-          // GET reviews where username = current user 
-
-
-          const response = await fetch(`http://localhost:8080/api/services/reviews`);
+          const response = await fetch(`http://localhost:8080/api/service/reviews`);
           const data = await response.json();
           setMyReviews(data);
         } catch (err) {
@@ -182,7 +181,7 @@ export function NewReview() {
           <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
               <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                   <p className="text-3xl font-semibold">My Reviews</p>
-                  <a href="/services/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                  <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                   text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       New Review
@@ -282,7 +281,7 @@ export function NewReview() {
                 type="submit" 
                 value="Submit Edits">                      
               </input>
-              <a href="/services/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
+              <a href="/service/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
             </form>
           </div>
         </div>

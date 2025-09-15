@@ -120,7 +120,7 @@ export function SignIn() {
 
             <p className="mt-10 text-center text-md text-gray-500">
               <a href="./create-account" className="ml-2 font-semibold text-blue-900 hover:text-blue-950">
-                Create Account
+                Create an account
                 </a>
             </p>
           </div>
@@ -131,9 +131,17 @@ export function SignIn() {
 
 export function MyAccount() {
 
-  // functions to change username/password
-
-
+  async function deleteAccount() {
+    try {
+      const response = await fetch("https://localhost:8080/api/service/account", {
+        method: 'DELETE'
+      });
+      const status = await response.json();
+      console.log(status);
+    } catch (err) {
+      console.error("Failed to delete user: " + err);
+    }
+  }
 
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
@@ -141,13 +149,12 @@ export function MyAccount() {
               <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                   <p className="text-3xl font-semibold">My Account</p>
                   <p className="text-md font-semibold">Username: </p>
-                  <p className="text-md font-semibold">Password: </p>
-                  <a href="/services/edit-account" className="inline-flex items-center px-4 py-2 text-md 
+                  <a href="/service/edit-account" className="inline-flex items-center px-4 py-2 text-md 
                   text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       Edit username/password
                   </a>
-                  <a href="/" className="inline-flex items-center px-4 py-2 text-md 
+                  <a href="/" onClick={deleteAccount} className="inline-flex items-center px-4 py-2 text-md 
                   text-center text-white bg-red-800 rounded-lg hover:bg-blue-900 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       Delete account <br></br>
@@ -165,7 +172,7 @@ export function EditAccount() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleSubmit(e) {
+  async function submitEdits(e) {
     e.preventDefault();
     // PUT (new username, new password) to backend
 
@@ -183,9 +190,9 @@ export function EditAccount() {
           <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
           shadow dark:bg-gray-800 dark:border-blue-950">
             
-            <form method="post" onSubmit={handleSubmit}>
+            <form method="post" onSubmit={submitEdits}>
               <label htmlFor="title">
-                Username:
+                New username:
                 <input className="w-full p-2 rounded-md"
                  type="text" value={username} name="username"
                  onChange={e => setUsername(e.target.value)}></input>
@@ -193,7 +200,7 @@ export function EditAccount() {
               <br></br>
               <br></br>
               <label htmlFor="title">
-                Password:
+                New password:
                 <input className="w-full p-2 rounded-md"
                  type="text" value={password} name="password"
                  onChange={e => setPassword(e.target.value)}></input>
@@ -206,7 +213,7 @@ export function EditAccount() {
                 type="submit" 
                 value="Submit Edits">                      
               </input>
-              <a href="/services/my-account" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
+              <a href="/service/my-account" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
             </form>
           </div>
         </div>

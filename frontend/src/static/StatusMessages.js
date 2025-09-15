@@ -15,9 +15,9 @@ export function AccountRequired() {
       <h3 className="text-4xl font-bold text-gray-800 mb-4">Account Required</h3>
       <p className="text-lg text-blue-900 mb-8">You must be signed in to access this section. 
         Please 
-        <a href="/services/sign-in" className="text-blue-500 hover:underline"> sign in </a> 
+        <a href="/service/sign-in" className="text-blue-500 hover:underline"> sign in </a> 
         or 
-        <a href="/services/create-account" className="text-blue-500 hover:underline"> create an account. </a>
+        <a href="/service/create-account" className="text-blue-500 hover:underline"> create an account. </a>
         </p>
       <a href="/" className="text-blue-500 hover:underline">Return to Home</a>
     </div>

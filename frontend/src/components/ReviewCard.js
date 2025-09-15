@@ -18,7 +18,7 @@ export function PublicReviewCard({ username, title, rating, description, image }
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-blue-950 dark:text-gray-400">{description}</p>
-                <a href="../pages/Maintenance" className="inline-flex items-center px-3 py-2 font-medium 
+                <a href="../static/Maintenance" className="inline-flex items-center px-3 py-2 font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
@@ -53,7 +53,7 @@ export function PrivateReviewCard({ username, title, rating, description, image 
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-blue-950 dark:text-gray-400">{description}</p>
-                <a href="../services/edit-review" className="inline-flex items-center px-3 py-2 font-medium 
+                <a href="../service/edit-review" className="inline-flex items-center px-3 py-2 font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
