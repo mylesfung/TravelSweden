@@ -22,7 +22,7 @@ public class ReviewController {
     public List<Review> getAllReviews() {
         return reviewRepo.findAll();
     }
-    @GetMapping("/my-reviews")
+    @GetMapping("/user")
     public List<Review> getAllReviewsByUsername(@RequestBody String username) {
         return reviewRepo.findAllByUsername(username);
     }

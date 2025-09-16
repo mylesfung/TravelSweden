@@ -36,6 +36,8 @@ public class ReviewService {
         reviewRepo.save(review);
     }
 
-    // PUT Review
-    public void editReview(Review rvw) {}
+    public void editReview(Review rvw) {
+        // Implement PUT Review
+
+    }
 }

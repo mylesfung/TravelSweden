@@ -6,14 +6,14 @@ export const AccountContext = createContext(null);
 
 // Export Provider wrapper component
 export function AccountProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [account, setAccount] = useState({ "username": "Anonymous" });
 
     useEffect(() => {
         async function getUsername() {
             try {
-                const response = await fetch('https://localhost:8080/api/service/account/current', {method: 'GET'});
+                const response = await fetch('http://localhost:8080/api/service/account/current', {method: 'GET'});
                 const data = await response.json();
-                setUser(data);
+                setAccount(data);
             } catch (err) {
             console.error("Error fetching current User: ", err);
             }
@@ -22,7 +22,7 @@ export function AccountProvider({ children }) {
         }, []);
 
     // Provide user value for AccountContext export 
-    return <AccountContext.Provider value={user}>
+    return <AccountContext.Provider value={{ account, setAccount }}>
         {children}
     </AccountContext.Provider>
     }

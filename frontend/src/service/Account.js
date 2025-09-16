@@ -1,5 +1,5 @@
 import Flag from "../images/skånska-flaggan.png";
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
 import { useNavigate } from "react-router"; 
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
@@ -20,7 +20,6 @@ export function CreateAccount() {
     try {
       const response = await fetch("http://localhost:8080/api/service/account", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData
       })
       const status = await response.json();
@@ -97,6 +96,7 @@ export function CreateAccount() {
 
 export function SignIn() {
   const navigate = useNavigate();
+  const { account, setAccount } = useContext(AccountContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -104,20 +104,37 @@ export function SignIn() {
   async function authenticate(e) {
     e.preventDefault();
 
-    const formData = new FormData();
+    const formData = new URLSearchParams();   // FormData() incompatible with Spring Security login ; use URLSearchParams instead
     formData.append("username", username);
     formData.append("password", password);
 
     try {
       const response = await fetch("http://localhost:8080/spring-security-login", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
+        body: formData.toString()
       })
       const status = await response.json();
       console.log(status);
     } catch (err) {
       console.error("Failed to create account: " + err);
+    }
+    try {
+      // fetch current account from backend
+      const response = await fetch("http://localhost:8080/api/service/account/current", {
+        credentials: "include"
+      });
+      if (!response.ok) {
+        throw new Error(`GET login failed: ${response.status}`);
+      }
+      const data = await response.json();
+
+      // update AccountContext
+      setAccount(data);
+
+    } catch (err) {
+      console.error("Failed to fetch new logged-in user: " + err);
     }
     navigate("/");
   }
@@ -190,38 +207,49 @@ export function SignIn() {
 export function MyAccount() {
 
   const navigate = useNavigate();
-  const account = useContext(AccountContext);
+  const { account, setAccount } = useContext(AccountContext);
 
   async function handleLogout() {
     try {
       const response = await fetch("http://localhost:8080/spring-security-logout", {
         method: "POST",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        //body: JSON.stringify({    null })
       });
-      const status = await response.json();
-      console.log(status);
+      if (!response.ok) {
+        console.error("Logout failed", response.status);
+        return;
+      } else {
+        const status = await response.json();
+        console.log(status);
+
+        setAccount(null);
+        navigate("/")
+      }
     } catch (err) {
       console.error("Failed to delete user: " + err);
     }
-    navigate("/")
   }
 
   async function deleteAccount() {
     try {
-      const response = await fetch(`http://localhost:8080/api/service/account?id=${   null}`, {
+      // Delete account first (requires login session cookies)
+      const response = await fetch(`http://localhost:8080/api/service/account?id=${account.id}`, {
         method: "DELETE",
         credentials: "include"
       });
-      const status = await response.json();
-      console.log(status);
+      if (!response.ok) {
+        console.error("Delete failed: " + response.status);
+        return;
+      } else {
+        const status = await response.json();
+        console.log(status);
+      }
+      // Log out
+      await handleLogout()
+
     } catch (err) {
-      console.error("Failed to delete user: " + err);
+      console.error("fetch DELETE failed: " + err);
     }
-    navigate("/")
   }
 
   return (
@@ -230,7 +258,7 @@ export function MyAccount() {
               <div className='flex flex-col items-center w-3/4 align-center gap-5 md:mr-28'>
                   <p className="text-3xl font-semibold">My Account</p>
                   <br></br>
-                  <p className="text-md font-semibold">Username: {   null}</p>
+                  <p className="text-md font-semibold">Username: {account.username}</p>
                   <br></br>
                   <a href="/" onClick={handleLogout} className="inline-flex items-center px-3 py-2 text-md 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
@@ -257,7 +285,7 @@ export function MyAccount() {
 }
 
 export function EditAccount() {
-  const account = useContext(AccountContext);
+  const { account, setAccount } = useContext(AccountContext);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');

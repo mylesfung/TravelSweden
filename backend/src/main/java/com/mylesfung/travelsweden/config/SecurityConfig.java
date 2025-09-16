@@ -16,16 +16,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // disable in dev to allow React fetch()
+                .csrf(csrf -> csrf.disable()) // disable in DEV to allow JS fetch();   enable in PROD for security
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/service/reviews").permitAll()
-                        .requestMatchers("/api/service/new-review").permitAll()
-                        .requestMatchers("/api/service/create-account").permitAll()
-                        .requestMatchers("/spring-security-login").permitAll()
-                        // all other API endpoints require secure login
+                        .requestMatchers(
+                                "/api/service/reviews",
+                                "/api/service/new-review",
+                                "/api/service/create-account",
+                                "/uploads/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
+                        // Spring Security registers an internal filter to accept POST requests to .loginProcessingUrl
                         .loginProcessingUrl("/spring-security-login")
                         .usernameParameter("username")
                         .passwordParameter("password")
@@ -34,6 +36,7 @@ public class SecurityConfig {
                         .logoutUrl("/spring-security-logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
+                        .permitAll()
                 );
         return http.build();
     }

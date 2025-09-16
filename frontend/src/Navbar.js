@@ -6,13 +6,10 @@ import { AccountContext } from './AccountContext';
 
 export function Navbar() {
 
-    const account = useContext(AccountContext);
+    const { account, setAccount } = useContext(AccountContext);
 
-    //placeholder values
-    const route = "/service/sign-in";
-    const text = "Sign In";
-    //const route =    null == "Anonymous" ? "/service/sign-in" : "/service/my-account";
-    //const text =    null == "Anonymous" ? "Sign In" : "My Account";
+    const route = (account.username == "Anonymous") ? "/service/sign-in" : "/service/my-account";
+    const text = (account.username == "Anonymous") ? "Sign In" : "My Account";
 
     return (
         <div className="flex justify-between p-5 items-center border-b-4 border-double bg-gray-100 border-blue-950">

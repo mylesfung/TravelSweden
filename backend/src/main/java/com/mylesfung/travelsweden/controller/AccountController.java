@@ -20,15 +20,12 @@ public class AccountController {
     private final AccountRepo accountRepo;
     private final AccountService accountService;
 
-    @GetMapping("/current")
     // Authentication interface supports getPrincipal(), getAuthorities(), isAuthenticated()
     // Spring Security auto-injects an Authentication instance referencing the current logged-in user
+    @GetMapping("/current")
     public AccountDto currentUsername(Authentication auth) {
         UserDetails user = (UserDetails) auth.getPrincipal();
         String username = user.getUsername();
-        if (username == "anonymousUser") {
-            return new AccountDto("Anonymous");
-        }
         return new AccountDto(username);
     }
     @GetMapping
@@ -51,8 +48,8 @@ public class AccountController {
         return accountService.editAccount(uid, username, password);
     }
     @DeleteMapping
-    public ResponseEntity<String> deleteAccount(@RequestBody String username) {
-        accountRepo.delete(accountRepo.findByUsername(username));
+    public ResponseEntity<String> deleteAccount(@RequestBody Long id) {
+        accountRepo.deleteById(id);
         return ResponseEntity.ok("Account deleted");
     }
 }
