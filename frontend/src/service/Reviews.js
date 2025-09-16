@@ -1,5 +1,6 @@
 import { PublicReviewCard, PrivateReviewCard } from '../components/ReviewCard';
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import { AccountContext } from '../AccountContext';
 
 export function AllReviews() {
@@ -17,19 +18,19 @@ export function AllReviews() {
       }
     }
     getReviews();
-  }, []) // empty dependency array [] ensures this only runs once on component mount (= once per page load)
+  }, []) // empty dependency array [] ensures this only runs once on component mount (page render)
 
   return (
     <div className="bg-gray-200 h-[calc(100vh-6.25rem)] w-full overflow-auto">
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
-                <p className="text-3xl font-semibold">Reviews</p>
-                <p className="text-lg w-1/2 text-center">A collection of user reviews of 
+                <p className="text-3xl font-semibold">Travel Stories</p>
+                <p className="text-lg w-1/2 text-center">A collection of user stories of unique happenings across
                  cities, towns, history, culture, nature, design innovation, and more.</p>
                 <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                    New Review
+                    New Story
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -56,16 +57,21 @@ export function AllReviews() {
 
 export function MyReviews() {
 
+  const account = useContext(AccountContext);
+
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
     async function getMyReviews() {
       try {
-        const response = await fetch(`http://localhost:8080/api/service/reviews`);
+        const response = await fetch(`http://localhost:8080/api/service/reviews?id=${   null}`, {
+          method: "GET",
+          credentials: "include"
+        });
         const data = await response.json();
         setMyReviews(data);
       } catch (err) {
-        console.error("Error fetching reviews for username X ", err);
+        console.error("Error fetching reviews: ", err);
       }
     }
     getMyReviews();
@@ -75,11 +81,11 @@ export function MyReviews() {
     <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
-                <p className="text-3xl font-semibold">My Reviews</p>
+                <p className="text-3xl font-semibold">My Stories</p>
                 <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                    New Review
+                    New Story
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -105,20 +111,20 @@ export function MyReviews() {
 }
 
 export function NewReview() {
+    const navigate = useNavigate();
+    const account = useContext(AccountContext);
 
     const [username, setUsername] = useState("");
     const [title, setTitle] = useState("");
     const [rating, setRating] = useState(1);
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-
-    const account = useContext(AccountContext);
     
     async function submitReview(e) {
       // e : 'SyntheticEvent' object automatically passed in by broswer upon event listener trigger
       e.preventDefault(); // stop auto-page reload before async form submission completes
 
-      setUsername(account.username);
+      setUsername(   null);
 
       const formData = new FormData();
       formData.append('username', username); 
@@ -130,6 +136,8 @@ export function NewReview() {
       try {
         const response = await fetch('http://localhost:8080/api/service/reviews', { 
           method: "POST", 
+          credentials: "include",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: formData
         });
         const status = await response.json();
@@ -143,20 +151,22 @@ export function NewReview() {
       setRating(1);
       setDescription("");
       setImage(null);
+
+      navigate("/service/reviews");
     }
   
     return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full">
         <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
           <div className="text-3xl font-semibold">
-            New Review
+            New Story
           </div>
           <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
           shadow dark:bg-gray-800 dark:border-blue-950">
             
             <form method="post" onSubmit={submitReview}>
               <label htmlFor="title">
-                Title of review:
+                Title of story:
                 <input className="w-full p-2 rounded-md"
                  type="text" value={title} name="title"
                  onChange={e => setTitle(e.target.value)}></input>
@@ -199,7 +209,7 @@ export function NewReview() {
               <input 
                 className="rounded-md p-2 text-white bg-blue-900 rounded-lg hover:bg-blue-950" 
                 type="submit" 
-                value="Submit Review">                      
+                value="Submit">                      
               </input>
               <a href="/service/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
             </form>
@@ -210,10 +220,12 @@ export function NewReview() {
   }
 
 export function EditReview() {
+  const navigate = useNavigate();
+  const account = useContext(AccountContext);
   // Prefill form with existing GET review data fetched from backend
   // OR pass in current state from MyReviews page (?)
 
-  const [Username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState(1);
   const [description, setDescription] = useState("");
@@ -222,7 +234,7 @@ export function EditReview() {
   async function submitEdits(e) {
     e.preventDefault();
     // POST edits to Postgres
-
+    navigate("/static/maintenance");
 
 
 
@@ -233,14 +245,14 @@ export function EditReview() {
     <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full">
       <div className='flex flex-col flex-wrap items-center md:mr-36 p-10 gap-10'>
         <div className="text-3xl font-semibold">
-          Edit Review
+          Edit Story
         </div>
         <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
         shadow dark:bg-gray-800 dark:border-blue-950">
           
           <form method="post" onSubmit={submitEdits}>
             <label htmlFor="title">
-              Title of review:
+              Title of story:
               <input className="w-full p-2 rounded-md"
                 type="text" value={title} name="title"
                 onChange={e => setTitle(e.target.value)}></input>
@@ -283,7 +295,7 @@ export function EditReview() {
             <input 
               className="rounded-md p-2 text-white bg-blue-900 rounded-lg hover:bg-blue-950" 
               type="submit" 
-              value="Submit Edits">                      
+              value="Submit">                      
             </input>
             <a href="/service/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
           </form>
@@ -297,10 +309,9 @@ export function deleteReview(review_id) {
 
   async function execute() {
     try {
-      const response = await fetch("http://localhost:8080/api/service/reviews", {
+      const response = await fetch(`http://localhost:8080/api/service/reviews?id=${review_id}`, {
         method: "DELETE",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(review_id)
+        credentials: "include"
       })
       const status = await response.json();
       console.log(status);

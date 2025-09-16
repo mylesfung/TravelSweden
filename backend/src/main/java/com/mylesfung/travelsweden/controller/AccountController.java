@@ -32,8 +32,8 @@ public class AccountController {
         return new AccountDto(username);
     }
     @GetMapping
-    public Optional<Account> myAccount(@RequestBody Long uid) {
-        return accountRepo.findById(uid);
+    public Optional<Account> myAccount(@RequestBody Long id) {
+        return accountRepo.findById(id);
     }
     @PostMapping
     public ResponseEntity<String> createAccount(
@@ -51,8 +51,8 @@ public class AccountController {
         return accountService.editAccount(uid, username, password);
     }
     @DeleteMapping
-    public ResponseEntity<String> deleteAccount(@RequestBody Long id) {
-        accountRepo.delete(accountRepo.getById(id));
+    public ResponseEntity<String> deleteAccount(@RequestBody String username) {
+        accountRepo.delete(accountRepo.findByUsername(username));
         return ResponseEntity.ok("Account deleted");
     }
 }

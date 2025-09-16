@@ -1,14 +1,35 @@
 import Flag from "../images/skånska-flaggan.png";
 import { useState, useEffect, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
+import { useNavigate } from "react-router"; 
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
-  // POST (username, password) to backend and create new user
+  const navigate = useNavigate();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  async function createUser(e) {
+    e.preventDefault(); 
 
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
 
+    try {
+      const response = await fetch("http://localhost:8080/api/service/account", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+      })
+      const status = await response.json();
+      console.log(status);
+    } catch (err) {
+      console.error("Failed to create account: " + err);
+    }
+    navigate("/service/sign-in");
+  }
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-6.25rem)] w-full">
@@ -27,7 +48,11 @@ export function CreateAccount() {
                   Username
                   </label>
                 <div className="mt-2">
-                  <input type="email" name="email" id="email" autocomplete="email" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
+                  <input type="text" name="text" value={username} 
+                  onChange={e => setUsername(e.target.value)} autocomplete="current-username" 
+                  required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 
+                  outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
+                  focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
                   </input>
                 </div>
               </div>
@@ -39,7 +64,11 @@ export function CreateAccount() {
                     </label>
                 </div>
                 <div className="mt-2">
-                  <input type="password" name="password" id="password" autocomplete="current-password" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
+                  <input type="text" name="text" value={password} 
+                  onChange={e => setPassword(e.target.value)} autocomplete="current-password" 
+                  required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline 
+                  outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
+                  focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
                   </input>
                 </div>
               </div>
@@ -47,7 +76,7 @@ export function CreateAccount() {
               <br></br>
 
               <div className="flex justify-center">
-                <button type="submit" className="flex w-96 justify-center rounded-md bg-blue-900 px-3 py-1.5 
+                <button onSubmit={createUser} type="submit" className="flex w-96 justify-center rounded-md bg-blue-900 px-3 py-1.5 
                 text-md font-semibold text-white shadow-sm hover:bg-blue-900 focus-visible:outline 
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900">
                   Create account
@@ -67,12 +96,31 @@ export function CreateAccount() {
 }
 
 export function SignIn() {
-  // POST user, set token in local storage, redirect to home page
+  const navigate = useNavigate();
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  async function authenticate(e) {
+    e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
 
-  // On sign-in: change text 'Sign In' to 'My Account
+    try {
+      const response = await fetch("http://localhost:8080/spring-security-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData
+      })
+      const status = await response.json();
+      console.log(status);
+    } catch (err) {
+      console.error("Failed to create account: " + err);
+    }
+    navigate("/");
+  }
 
   return (
     <div className="bg-gray-350 h-[calc(100vh-6.25rem)] w-full">
@@ -91,7 +139,11 @@ export function SignIn() {
                   Username
                   </label>
                 <div className="mt-2">
-                  <input type="email" name="email" id="email" autocomplete="email" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
+                  <input type="text" name="text" onChange={e => setUsername(e.target.value)} 
+                  id="username" autocomplete="email" required className="block w-full rounded-md 
+                  bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 
+                  outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 
+                  focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
                   </input>
                 </div>
               </div>
@@ -103,7 +155,11 @@ export function SignIn() {
                     </label>
                 </div>
                 <div className="mt-2">
-                  <input type="password" name="password" id="password" autocomplete="current-password" required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
+                  <input type="text" name="text" onChange={e => setPassword(e.target.value)} 
+                  id="password" autocomplete="current-password" required className="block w-full 
+                  rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 
+                  -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
+                  focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
                   </input>
                 </div>
               </div>
@@ -111,7 +167,7 @@ export function SignIn() {
               <br></br>
 
               <div>
-                <button type="submit" className="flex w-full justify-center rounded-md bg-blue-900 
+                <button type="submit" onClick={authenticate} className="flex w-full justify-center rounded-md bg-blue-900 
                 px-3 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-blue-900 
                 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
                 focus-visible:outline-blue-900">
@@ -133,37 +189,62 @@ export function SignIn() {
 
 export function MyAccount() {
 
+  const navigate = useNavigate();
   const account = useContext(AccountContext);
-  const username = account.username;
 
-  async function deleteAccount() {
+  async function handleLogout() {
     try {
-      const response = await fetch("http://localhost:8080/api/service/account", {
-        method: "DELETE",
-        headers: {"Content-Type:": "application/json"},
-        body: JSON.stringify(account.id)
+      const response = await fetch("http://localhost:8080/spring-security-logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        //body: JSON.stringify({    null })
       });
       const status = await response.json();
       console.log(status);
     } catch (err) {
       console.error("Failed to delete user: " + err);
     }
+    navigate("/")
+  }
+
+  async function deleteAccount() {
+    try {
+      const response = await fetch(`http://localhost:8080/api/service/account?id=${   null}`, {
+        method: "DELETE",
+        credentials: "include"
+      });
+      const status = await response.json();
+      console.log(status);
+    } catch (err) {
+      console.error("Failed to delete user: " + err);
+    }
+    navigate("/")
   }
 
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
-          <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
-              <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
+          <div className='flex flex-col flex-wrap items-center p-10'>
+              <div className='flex flex-col items-center w-3/4 align-center gap-5 md:mr-28'>
                   <p className="text-3xl font-semibold">My Account</p>
-                  <p className="text-md font-semibold">Username: {username}</p>
-                  <a href="/service/edit-account" className="inline-flex items-center px-4 py-2 text-md 
-                  text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                  <br></br>
+                  <p className="text-md font-semibold">Username: {   null}</p>
+                  <br></br>
+                  <a href="/" onClick={handleLogout} className="inline-flex items-center px-3 py-2 text-md 
+                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                      Log out
+                  </a>
+                  <a href="/service/edit-account" className="inline-flex items-center px-3 py-2 text-md 
+                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       Edit username/password
                   </a>
-                  <a href="/" onClick={deleteAccount} className="inline-flex items-center px-4 py-2 text-md 
-                  text-center text-white bg-red-800 rounded-lg hover:bg-blue-900 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                  <a href="/" onClick={deleteAccount} className="inline-flex items-center px-3 py-2 text-md 
+                  text-center text-white bg-red-800 rounded hover:bg-red-900 focus:ring-4 focus:outline-none 
+                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 dark:focus:ring-blue-800">
                       Delete account <br></br>
                       (warning: cannot be undone!)
                   </a>
@@ -176,17 +257,20 @@ export function MyAccount() {
 }
 
 export function EditAccount() {
+  const account = useContext(AccountContext);
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   async function submitEdits(e) {
     e.preventDefault();
     // PUT (new username, new password) to backend
+    navigate("/static/maintenance")
 
 
     
     
-
 
 
   }

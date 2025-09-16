@@ -4,8 +4,8 @@ export function Home() {
     return (
       <div className="flex flex-wrap justify-center w-full h-[calc(100vh-6.25rem)] bg-street bg-cover overflow-auto gap-10 p-10">
         <HomeWidget 
-          title={"Reviews"}
-          description={"Read user reviews of various travel experiences and phenomena in the Skåne region."}
+          title={"Travel Stories"}
+          description={"Read user stories of anecdotal travel experiences and unique cultural phenomena in the Skåne region."}
           main_path={"/service/reviews"}
           button_path={"/service/new-review"}
           button_label={"Write a Review"}
@@ -24,8 +24,8 @@ export function Home() {
           button_icon={null}
         />
         <HomeWidget 
-          title={"Transit Planner"}
-          description={"Find the best routes across Skåne using the Skånetrafiken app."}
+          title={"Skånetrafiken"}
+          description={"Find and purchase tickets for the best routes across Skåne using Skåne's official regional transit application."}
           main_path={"https://www.skanetrafiken.se/"}
           button_path={"https://www.skanetrafiken.se/"}
           button_label={"Find Route"}
@@ -36,7 +36,7 @@ export function Home() {
           }
         />
         <HomeWidget 
-          title={"Weather Report"}
+          title={"Weather in Malmö, Sweden"}
           description={"Get comprehensive climate and weather data courtesy of Weather Spark."}
           main_path={"https://weatherspark.com/y/76106/Average-Weather-in-Malm%C3%B6-Sweden-Year-Round"}
           button_path={"https://weatherspark.com/y/76106/Average-Weather-in-Malm%C3%B6-Sweden-Year-Round"}

@@ -59,13 +59,13 @@ export function PrivateReviewCard({ id, username, title, rating, description, im
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
-                    Edit review
+                    Edit
                 </a>
                 <a onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
                 text-center text-white bg-red-800 rounded-lg hover:bg-blue-900 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
-                    Delete review
+                    Delete
                 </a>
             </div>
         </div>

@@ -18,24 +18,20 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // disable in dev to allow React fetch()
                 .authorizeHttpRequests(auth -> auth
-                        // public pages do not require login
-                        .requestMatchers("/api/static/**").permitAll()
                         .requestMatchers("/api/service/reviews").permitAll()
                         .requestMatchers("/api/service/new-review").permitAll()
                         .requestMatchers("/api/service/create-account").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        // all other endpoints require secure login
+                        .requestMatchers("/spring-security-login").permitAll()
+                        // all other API endpoints require secure login
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginProcessingUrl("/spring-security-login")
                         .usernameParameter("username")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/api/service/account")
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
+                        .logoutUrl("/spring-security-logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 );
