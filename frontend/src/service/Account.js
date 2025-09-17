@@ -1,7 +1,7 @@
 import Flag from "../images/skånska-flaggan.png";
 import { useState, useEffect, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
-import { useNavigate } from "react-router"; 
+import { resolvePath, useNavigate } from "react-router"; 
 import { PrivateReviewCard } from "../components/ReviewCard";
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
@@ -212,67 +212,61 @@ export function MyAccount() {
 
   async function handleLogout() {
     try {
-      const response = await fetch("http://localhost:8080/spring-security-logout", {
+      await fetch("http://localhost:8080/spring-security-logout", {
         method: "POST",
         credentials: "include",
       });
-      if (!response.ok) {
-        console.error("Logout failed", response.status);
-        return;
-      } else {
-        const status = await response.json();
-        console.log(status);
-
-        setAccount({ "username": "Anonymous" });
-        navigate("/")
-      }
     } catch (err) {
+      // fetch() fails due to browser issue -  cannot detect CORS backend WebConfig configuration and blocks request
       console.error("Failed to POST logout: " + err);
     }
+    setAccount({ "username": "Anonymous" });
+    navigate("/")
   }
 
   async function deleteAccount() {
     try {
-      // Delete account first (requires login session cookies)
+      // Delete account first
       await fetch(`http://localhost:8080/api/service/account?username=${account.username}`, {
         method: "DELETE",
-        credentials: "include"
+        credentials: "include",
       });
-      // Log out
-      await handleLogout()
-
     } catch (err) {
       console.error("fetch DELETE failed: " + err);
     }
+    // Log out
+    await handleLogout();
   }
 
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
           <div className='flex flex-col flex-wrap items-center p-10'>
-              <div className='flex flex-col items-center w-3/4 align-center gap-6 md:mr-28'>
+              <div className='flex flex-col items-center w-3/4 gap-5 md:mr-28'>
                   <p className="text-3xl font-semibold">Account Information</p>
                   <p className="text-xl">Username: {account.username}</p>
-                  <a href="/service/my-reviews" className="inline-flex items-center px-3 py-2 text-xl 
+                  <div className="flex flex-col gap-3 mt-4">
+                    <a href="/service/my-reviews" className="w-60 justify-center inline-flex px-3 py-2 text-xl 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       My Stories
                   </a>
-                  <a href="/" onClick={handleLogout} className="inline-flex items-center px-3 py-2 text-md 
-                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                  <a onClick={handleLogout} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
+                  text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       Log out
                   </a>
-                  <a href="/service/edit-account" className="inline-flex items-center px-3 py-2 text-md 
+                  <a href="/service/edit-account" className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                       Edit username/password
                   </a>
-                  <a href="/" onClick={deleteAccount} className="inline-flex items-center px-3 py-2 text-md 
+                  <button onClick={deleteAccount} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
                   text-center text-white bg-red-800 rounded hover:bg-red-900 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 dark:focus:ring-blue-800">
                       Delete account <br></br>
                       (warning: cannot be undone!)
-                  </a>
+                  </button>
+                  </div>
                   <br></br>
               </div>
 

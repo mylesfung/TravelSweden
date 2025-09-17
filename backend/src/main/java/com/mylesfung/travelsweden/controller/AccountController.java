@@ -3,6 +3,7 @@ package com.mylesfung.travelsweden.controller;
 import com.mylesfung.travelsweden.dto.AccountDto;
 import com.mylesfung.travelsweden.model.Account;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.mylesfung.travelsweden.repository.AccountRepo;
 import com.mylesfung.travelsweden.service.AccountService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,15 +24,13 @@ public class AccountController {
 
     // Authentication interface supports getPrincipal(), getAuthorities(), isAuthenticated()
     // Spring Security auto-injects an Authentication instance referencing the current logged-in user
+    @GetMapping
+    public List<Account> getAllAccounts() {return accountRepo.findAll();}
     @GetMapping("/current")
     public AccountDto currentUsername(Authentication auth) {
         UserDetails user = (UserDetails) auth.getPrincipal();
         String username = user.getUsername();
         return new AccountDto(username);
-    }
-    @GetMapping
-    public Optional<Account> myAccount(@RequestBody Long id) {
-        return accountRepo.findById(id);
     }
     @PostMapping("/create")
     public ResponseEntity<String> createAccount(@RequestBody Map<String, String> body) {
@@ -50,6 +50,9 @@ public class AccountController {
     @DeleteMapping
     public ResponseEntity<String> deleteAccount(@RequestParam String username) {
         Account account = accountRepo.findByUsername(username);
+        if (account == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+        }
         accountRepo.deleteById(account.getId());
         return ResponseEntity.ok("Account deleted");
     }

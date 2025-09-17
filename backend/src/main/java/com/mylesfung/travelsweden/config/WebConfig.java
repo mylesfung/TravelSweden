@@ -5,6 +5,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+// WebConfig provides configuration for MVC controllers
+// (this is separate from Spring Security, which handles login/logout/CORS in SecurityConfig)
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Override
