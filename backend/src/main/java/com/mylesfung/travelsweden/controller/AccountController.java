@@ -48,8 +48,9 @@ public class AccountController {
         return accountService.editAccount(uid, username, password);
     }
     @DeleteMapping
-    public ResponseEntity<String> deleteAccount(@RequestParam Long id) {
-        accountRepo.deleteById(id);
+    public ResponseEntity<String> deleteAccount(@RequestParam String username) {
+        Account account = accountRepo.findByUsername(username);
+        accountRepo.deleteById(account.getId());
         return ResponseEntity.ok("Account deleted");
     }
 }

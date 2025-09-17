@@ -76,14 +76,19 @@ export function MyReviews() {
       }
     }
     getMyReviews();
-  }, [account])
+  }, [account, myReviews])
 
   return (
     <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">My Stories</p>
-                <div className='flex '>
+                <div className='flex gap-2'>
+                  <a href="/service/reviews" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                    All Stories
+                </a>
                   <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
@@ -92,7 +97,7 @@ export function MyReviews() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </a>
-                <a href="/service/my-account" className="ml-2 p-3 rounded-lg hover:bg-gray-300">Back</a>
+                <a href="/service/my-account" className="text-lg ml-2 p-3 rounded-lg hover:bg-gray-300">Back</a>
                 </div>
                 
                 
@@ -306,8 +311,6 @@ export function deleteReview(review_id) {
         method: "DELETE",
         credentials: "include"
       })
-      const status = await response.json();
-      console.log(status);
     } catch (err) {
       console.error("Failed to delete review: " + err);
     }

@@ -227,24 +227,17 @@ export function MyAccount() {
         navigate("/")
       }
     } catch (err) {
-      console.error("Failed to delete user: " + err);
+      console.error("Failed to POST logout: " + err);
     }
   }
 
   async function deleteAccount() {
     try {
       // Delete account first (requires login session cookies)
-      const response = await fetch(`http://localhost:8080/api/service/account?id=${account.id}`, {
+      await fetch(`http://localhost:8080/api/service/account?username=${account.username}`, {
         method: "DELETE",
         credentials: "include"
       });
-      if (!response.ok) {
-        console.error("Delete failed: " + response.status);
-        return;
-      } else {
-        const status = await response.json();
-        console.log(status);
-      }
       // Log out
       await handleLogout()
 
@@ -259,10 +252,10 @@ export function MyAccount() {
               <div className='flex flex-col items-center w-3/4 align-center gap-6 md:mr-28'>
                   <p className="text-3xl font-semibold">Account Information</p>
                   <p className="text-xl">Username: {account.username}</p>
-                  <a href="/service/my-reviews" className="inline-flex items-center px-3 py-2 text-lg 
+                  <a href="/service/my-reviews" className="inline-flex items-center px-3 py-2 text-xl 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                      My Reviews
+                      My Stories
                   </a>
                   <a href="/" onClick={handleLogout} className="inline-flex items-center px-3 py-2 text-md 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 

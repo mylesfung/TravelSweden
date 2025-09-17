@@ -55,18 +55,18 @@ export function PrivateReviewCard({ id, username, title, rating, description, im
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-blue-950 dark:text-gray-400">{description}</p>
-                <a href="../service/edit-review" className="inline-flex items-center px-3 py-2 font-medium 
+                <a href="../service/edit-review" className="inline-flex items-center px-5 py-2 font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
                     Edit
                 </a>
-                <a onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
-                text-center text-white bg-red-800 rounded-lg hover:bg-blue-900 focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
+                <button onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
+                text-center text-white bg-red-800 rounded-lg hover:bg-red-900 focus:ring-4 
+                focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 
                 dark:focus:ring-blue-800">
                     Delete
-                </a>
+                </button>
             </div>
         </div>
     )
