@@ -24,7 +24,7 @@ public class SecurityConfig {
                                 "/api/service/account/create",
                                 "/uploads/**"
                         ).permitAll()
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS preflight request
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS preflight requests
                         .anyRequest().authenticated()
                 )
                 // Custom JSON response handling (sending JSON status message back to React)
