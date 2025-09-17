@@ -241,31 +241,30 @@ export function MyAccount() {
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
           <div className='flex flex-col flex-wrap items-center p-10'>
-              <div className='flex flex-col items-center w-3/4 gap-5 md:mr-28'>
+              <div className='flex flex-col items-center w-3/4 gap-8 md:mr-28'>
                   <p className="text-3xl font-semibold">Account Information</p>
                   <p className="text-xl">Username: {account.username}</p>
                   <div className="flex flex-col gap-3 mt-4">
-                    <a href="/service/my-reviews" className="w-60 justify-center inline-flex px-3 py-2 text-xl 
-                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                      My Stories
-                  </a>
-                  <a onClick={handleLogout} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
-                  text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                      Log out
-                  </a>
-                  <a href="/service/edit-account" className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
-                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
-                      Edit username/password
-                  </a>
-                  <button onClick={deleteAccount} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
-                  text-center text-white bg-red-800 rounded hover:bg-red-900 focus:ring-4 focus:outline-none 
-                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 dark:focus:ring-blue-800">
-                      Delete account <br></br>
-                      (warning: cannot be undone!)
-                  </button>
+                      <button onClick={handleLogout} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
+                    text-blue-950 font-bold rounded bg-gray-400 hover:bg-gray-500 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                        Log out
+                    </button>
+                      <a href="/service/my-reviews" className="w-60 justify-center inline-flex px-4 py-3 text-md 
+                    text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                    focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                        My Stories
+                    </a>
+                    <a href="/service/edit-account" className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
+                    text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                    focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                        Edit username/password
+                    </a>
+                    <button onClick={deleteAccount} className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
+                    text-center text-white bg-red-800 rounded hover:bg-red-900 focus:ring-4 focus:outline-none 
+                    focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 dark:focus:ring-blue-800">
+                        Delete account <br></br>
+                        (warning: cannot be undone!)
+                    </button>
                   </div>
                   <br></br>
               </div>

@@ -76,7 +76,7 @@ export function MyReviews() {
       }
     }
     getMyReviews();
-  }, [account, myReviews])
+  }, [account, myReviews])  // Re-render on new account, adding/deleting reviews
 
   return (
     <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
@@ -97,7 +97,7 @@ export function MyReviews() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </a>
-                <a href="/service/my-account" className="text-lg ml-2 p-3 rounded-lg hover:bg-gray-300">Back</a>
+                <a href="/service/my-account" className="text-lg text-blue-950 px-5 py-3 rounded-lg hover:bg-gray-400">Back</a>
                 </div>
                 
                 
