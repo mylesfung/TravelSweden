@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import com.mylesfung.travelsweden.repository.AccountRepo;
 import com.mylesfung.travelsweden.service.AccountService;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/service/account")
-@CrossOrigin(origins = "http://localhost:3000")
 public class AccountController {
     private final AccountRepo accountRepo;
     private final AccountService accountService;
@@ -32,11 +32,11 @@ public class AccountController {
     public Optional<Account> myAccount(@RequestBody Long id) {
         return accountRepo.findById(id);
     }
-    @PostMapping
-    public ResponseEntity<String> createAccount(
-            @RequestParam String username,
-            @RequestParam String password
-    ) {
+    @PostMapping("/create")
+    public ResponseEntity<String> createAccount(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
+        System.out.println("USERNAME: " + username + " PASSWORD: " + password);
         return accountService.createAccount(username, password);
     }
     @PutMapping
@@ -48,7 +48,7 @@ public class AccountController {
         return accountService.editAccount(uid, username, password);
     }
     @DeleteMapping
-    public ResponseEntity<String> deleteAccount(@RequestBody Long id) {
+    public ResponseEntity<String> deleteAccount(@RequestParam Long id) {
         accountRepo.deleteById(id);
         return ResponseEntity.ok("Account deleted");
     }

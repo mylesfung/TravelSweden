@@ -1,7 +1,8 @@
 import Flag from "../images/skånska-flaggan.png";
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
 import { useNavigate } from "react-router"; 
+import { PrivateReviewCard } from "../components/ReviewCard";
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
@@ -13,21 +14,20 @@ export function CreateAccount() {
   async function createUser(e) {
     e.preventDefault(); 
 
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-
     try {
-      const response = await fetch("http://localhost:8080/api/service/account", {
+      //console.log("BEFORE FETCH");
+      const response = await fetch("http://localhost:8080/api/service/account/create", {
         method: "POST",
-        body: formData
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ username, password })
       })
-      const status = await response.json();
-      console.log(status);
+      //console.log("AFTER FETCH");
+      if (response.ok) {
+        navigate("/service/sign-in");
+      } 
     } catch (err) {
       console.error("Failed to create account: " + err);
     }
-    navigate("/service/sign-in");
   }
 
   return (
@@ -41,13 +41,13 @@ export function CreateAccount() {
           </div>
 
           <div className="mt-5 w-96">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-3">
               <div>
                 <label htmlFor="email" className="block text-md font-medium text-gray-900">
                   Username
                   </label>
                 <div className="mt-2">
-                  <input type="text" name="text" value={username} 
+                  <input type="text" name="username" value={username} 
                   onChange={e => setUsername(e.target.value)} autocomplete="current-username" 
                   required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 
                   outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
@@ -63,7 +63,7 @@ export function CreateAccount() {
                     </label>
                 </div>
                 <div className="mt-2">
-                  <input type="text" name="text" value={password} 
+                  <input type="password" name="password" value={password} 
                   onChange={e => setPassword(e.target.value)} autocomplete="current-password" 
                   required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline 
                   outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
@@ -75,13 +75,12 @@ export function CreateAccount() {
               <br></br>
 
               <div className="flex justify-center">
-                <button onSubmit={createUser} type="submit" className="flex w-96 justify-center rounded-md bg-blue-900 px-3 py-1.5 
-                text-md font-semibold text-white shadow-sm hover:bg-blue-900 focus-visible:outline 
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900">
-                  Create account
-                  </button>
+                <button className="flex w-full justify-center rounded-md bg-blue-900 
+                px-3 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-blue-900 
+                focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
+                focus-visible:outline-blue-900" type="button" 
+                onClick={createUser}>Create account</button>
               </div>
-              
             </form>
             <p className="mt-10 text-center text-md text-gray-500">
                 <a href="./sign-in" className="ml-2 font-semibold text-blue-900 hover:text-blue-950">
@@ -104,39 +103,39 @@ export function SignIn() {
   async function authenticate(e) {
     e.preventDefault();
 
-    const formData = new URLSearchParams();   // FormData() incompatible with Spring Security login ; use URLSearchParams instead
-    formData.append("username", username);
-    formData.append("password", password);
+    const data = new URLSearchParams();
+    data.append("username", username);
+    data.append("password", password);
 
     try {
-      const response = await fetch("http://localhost:8080/spring-security-login", {
+      await fetch("http://localhost:8080/spring-security-login", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString()
+        body: data.toString()
       })
-      const status = await response.json();
-      console.log(status);
     } catch (err) {
-      console.error("Failed to create account: " + err);
+      // Triggered because broswer JS raises CORS error (can't see CORS handling in backend SecurityConfig)
+      // The server-side authentication worked - successful POST
+      console.error("browser JS raises backend-handled CORS issue: " + err);
     }
     try {
-      // fetch current account from backend
       const response = await fetch("http://localhost:8080/api/service/account/current", {
+        method: "GET",
         credentials: "include"
       });
-      if (!response.ok) {
-        throw new Error(`GET login failed: ${response.status}`);
+      if (response.ok) {
+        const data = await response.json();
+        // update AccountContext
+        setAccount(data);
+        navigate("/");
+
+      } else {
+        throw new Error(`GET current login failed: ${response.status}`);
       }
-      const data = await response.json();
-
-      // update AccountContext
-      setAccount(data);
-
     } catch (err) {
       console.error("Failed to fetch new logged-in user: " + err);
     }
-    navigate("/");
   }
 
   return (
@@ -150,13 +149,13 @@ export function SignIn() {
           </div>
 
           <div className="mt-5 w-96">
-            <form className="space-y-6" action="#" method="POST">
+            <form onSubmit={authenticate} className="space-y-3">
               <div>
                 <label htmlFor="email" className="block text-md font-medium text-gray-900">
                   Username
                   </label>
                 <div className="mt-2">
-                  <input type="text" name="text" onChange={e => setUsername(e.target.value)} 
+                  <input type="text" name="username" onChange={e => setUsername(e.target.value)} 
                   id="username" autocomplete="email" required className="block w-full rounded-md 
                   bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 
                   outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 
@@ -172,7 +171,7 @@ export function SignIn() {
                     </label>
                 </div>
                 <div className="mt-2">
-                  <input type="text" name="text" onChange={e => setPassword(e.target.value)} 
+                  <input type="password" name="password" onChange={e => setPassword(e.target.value)} 
                   id="password" autocomplete="current-password" required className="block w-full 
                   rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 
                   -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
@@ -184,12 +183,14 @@ export function SignIn() {
               <br></br>
 
               <div>
-                <button type="submit" onClick={authenticate} className="flex w-full justify-center rounded-md bg-blue-900 
+                <input 
+                  className="flex w-full justify-center rounded-md bg-blue-900 
                 px-3 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-blue-900 
                 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
-                focus-visible:outline-blue-900">
-                  Sign in
-                </button>
+                focus-visible:outline-blue-900" 
+                  type="submit" 
+                  value="Sign in">                      
+                </input>
               </div>
             </form>
 
@@ -222,7 +223,7 @@ export function MyAccount() {
         const status = await response.json();
         console.log(status);
 
-        setAccount(null);
+        setAccount({ "username": "Anonymous" });
         navigate("/")
       }
     } catch (err) {
@@ -255,11 +256,14 @@ export function MyAccount() {
   return (
       <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
           <div className='flex flex-col flex-wrap items-center p-10'>
-              <div className='flex flex-col items-center w-3/4 align-center gap-5 md:mr-28'>
-                  <p className="text-3xl font-semibold">My Account</p>
-                  <br></br>
-                  <p className="text-md font-semibold">Username: {account.username}</p>
-                  <br></br>
+              <div className='flex flex-col items-center w-3/4 align-center gap-6 md:mr-28'>
+                  <p className="text-3xl font-semibold">Account Information</p>
+                  <p className="text-xl">Username: {account.username}</p>
+                  <a href="/service/my-reviews" className="inline-flex items-center px-3 py-2 text-lg 
+                  text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
+                  focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
+                      My Reviews
+                  </a>
                   <a href="/" onClick={handleLogout} className="inline-flex items-center px-3 py-2 text-md 
                   text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                   focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
@@ -276,6 +280,7 @@ export function MyAccount() {
                       Delete account <br></br>
                       (warning: cannot be undone!)
                   </a>
+                  <br></br>
               </div>
 
           

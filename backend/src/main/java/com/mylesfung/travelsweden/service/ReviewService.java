@@ -3,6 +3,7 @@ package com.mylesfung.travelsweden.service;
 import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +17,7 @@ public class ReviewService {
     private final ReviewRepo reviewRepo;
 
     // Implement controller methods requiring validation, user checks, business rules, etc.
-    public void addReview(String username, String title, Integer rating, String description, MultipartFile image) throws IOException {
+    public ResponseEntity<String> addReview(String username, String title, Integer rating, String description, MultipartFile image) throws IOException {
         // Hibernate/Spring Data JPA converts Review => SQL at runtime and inserts into DB
         Review review = new Review();
         review.setUsername(username);
@@ -34,10 +35,12 @@ public class ReviewService {
             review.setImageURL("/uploads/" + fileName);
         }
         reviewRepo.save(review);
+        return ResponseEntity.ok("Review added successfully!");
     }
 
-    public void editReview(Review rvw) {
+    public ResponseEntity<String> editReview(Review rvw) {
         // Implement PUT Review
+        return ResponseEntity.ok("Review edited successfully!");
 
     }
 }

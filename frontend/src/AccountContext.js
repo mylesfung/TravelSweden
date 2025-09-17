@@ -9,19 +9,27 @@ export function AccountProvider({ children }) {
     const [account, setAccount] = useState({ "username": "Anonymous" });
 
     useEffect(() => {
-        async function getUsername() {
+        async function getCurrentUser() {
             try {
-                const response = await fetch('http://localhost:8080/api/service/account/current', {method: 'GET'});
-                const data = await response.json();
-                setAccount(data);
+                const response = await fetch('http://localhost:8080/api/service/account/current', {
+                    method: "GET",
+                    credentials: "include"  // Send JSESSIONID to Spring Security
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setAccount(data);
+                } else if (response.status === 401) {
+                    setAccount({ username: "Anonymous" }); // not logged in to Spring Security
+                }
             } catch (err) {
-            console.error("Error fetching current User: ", err);
+                console.error("Error fetching current user:", err);
+                setAccount({ username: "Anonymous" });
             }
         }
-        getUsername();
+        getCurrentUser();
         }, []);
 
-    // Provide user value for AccountContext export 
+    // Provide object value for AccountContext export 
     return <AccountContext.Provider value={{ account, setAccount }}>
         {children}
     </AccountContext.Provider>

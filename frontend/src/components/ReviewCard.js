@@ -39,7 +39,7 @@ export function PrivateReviewCard({ id, username, title, rating, description, im
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
-                {image && <img className="rounded mx-auto" src={`http://localhost:8080${image}`} alt="review-image" />}
+                {image && <img className="rounded mx-auto" src={`http://localhost:8080${image}`} alt="story-image" />}
             </a>
             <div className="p-8 text-md">
                 <a>

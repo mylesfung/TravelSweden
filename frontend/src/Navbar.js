@@ -37,7 +37,7 @@ export function Navbar() {
                     <Link to={route}>{text}</Link>
                 </div>
                 <div>
-                    <Link to="/service/sign-in">
+                    <Link to={route}>
                         <svg id="user-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
                         strokeWidth={1.5} stroke="currentColor" 
                         class='size-10'>

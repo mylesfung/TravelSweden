@@ -21,16 +21,15 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try {
-            Account account = accountRepo.findByUsername(username);
+        Account account = accountRepo.findByUsername(username);
+        if (account == null) {
+            throw new UsernameNotFoundException("User not found: " + username);
+        } else {
             return new org.springframework.security.core.userdetails.User(
                     account.getUsername(),
                     account.getPassword(),
                     Collections.emptyList()
             );
-        } catch (UsernameNotFoundException e) {
-            System.out.println("Username not found: " + e);
-            return null;
         }
     }
 
@@ -38,13 +37,16 @@ public class AccountService implements UserDetailsService {
         Account newAccount = new Account();
         newAccount.setUsername(username);
         newAccount.setPassword(passwordEncoder.encode(password));
-        // Check for existing username in DB
-        boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
-        if (userAlreadyExists) {
-            return ResponseEntity.ok("Failed to create account: username taken");
-        }
         accountRepo.save(newAccount);
         return ResponseEntity.ok("Account created!");
+        //boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
+        //if (userAlreadyExists) {
+        //    return ResponseEntity.ok("Failed to create account: username taken");
+        //} else {
+        //    accountRepo.save(newAccount);
+        //    return ResponseEntity.ok("Account created!");
+        //}
+
     }
 
     public ResponseEntity<String> editAccount(Long uid, String username, String password) {

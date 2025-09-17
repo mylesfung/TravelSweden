@@ -4,6 +4,7 @@ import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
 import com.mylesfung.travelsweden.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,9 +12,8 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor    // inject constructors automatically
+@RequiredArgsConstructor
 @RequestMapping("/api/service/reviews")
-@CrossOrigin(origins = "http://localhost:3000") // allow requests from React app
 public class ReviewController {
     private final ReviewRepo reviewRepo;
     private final ReviewService reviewService;
@@ -23,11 +23,11 @@ public class ReviewController {
         return reviewRepo.findAll();
     }
     @GetMapping("/user")
-    public List<Review> getAllReviewsByUsername(@RequestBody String username) {
+    public List<Review> getAllReviewsByUsername(@RequestParam String username) {
         return reviewRepo.findAllByUsername(username);
     }
     @PostMapping
-    public void addReview(
+    public ResponseEntity<String> addReview(
             @RequestParam String username,
             @RequestParam String title,
             @RequestParam Integer rating,
@@ -37,12 +37,15 @@ public class ReviewController {
     ) throws IOException {
         // @RequestBody parses JSON input, whereas
         // @RequestParam parses HTML form inputs
-        reviewService.addReview(username, title, rating, description, image);
+        return reviewService.addReview(username, title, rating, description, image);
     }
     @PutMapping
-    public void editReview(Review rvw) {
-        reviewService.editReview(rvw);
+    public ResponseEntity<String> editReview(Review rvw) {
+        return reviewService.editReview(rvw);
     }
     @DeleteMapping
-    public void deleteReview(@RequestBody Long id) {reviewRepo.deleteById(id);}
+    public ResponseEntity<String> deleteReview(@RequestParam Long id) {
+        reviewRepo.deleteById(id);
+        return ResponseEntity.ok("Review deleted successfully!");
+    }
 }

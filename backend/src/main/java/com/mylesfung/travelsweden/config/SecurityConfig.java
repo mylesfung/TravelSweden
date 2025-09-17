@@ -20,17 +20,25 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/service/reviews",
-                                "/api/service/new-review",
-                                "/api/service/create-account",
+                                "/api/service/account/create",
                                 "/uploads/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
+                // Custom JSON response handling (sending JSON status message back to React)
                 .formLogin(form -> form
-                        // Spring Security registers an internal filter to accept POST requests to .loginProcessingUrl
                         .loginProcessingUrl("/spring-security-login")
                         .usernameParameter("username")
                         .passwordParameter("password")
+                        .successHandler((req, res, auth) -> {
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"status\":\"ok\"}");
+                        })
+                        .failureHandler((req, res, exc) -> {
+                            res.setStatus(401);
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"error\":\"Login failed\"}");
+                        })
                 )
                 .logout(logout -> logout
                         .logoutUrl("/spring-security-logout")

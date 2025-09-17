@@ -18,7 +18,7 @@ export function AllReviews() {
       }
     }
     getReviews();
-  }, []) // empty dependency array [] ensures this only runs once on component mount (page render)
+  }, []); // empty dependency array [] ensures this only runs once on component mount (page render)
 
   return (
     <div className="bg-gray-200 h-[calc(100vh-6.25rem)] w-full overflow-auto">
@@ -58,13 +58,14 @@ export function AllReviews() {
 export function MyReviews() {
 
   const { account, setAccount } = useContext(AccountContext);
-
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
     async function getMyReviews() {
+      if (account.username === "Anonymous") return;
+
       try {
-        const response = await fetch(`http://localhost:8080/api/service/reviews/user?id=${account.username}`, {
+        const response = await fetch(`http://localhost:8080/api/service/reviews/user?username=${account.username}`, {
           method: "GET",
           credentials: "include"
         });
@@ -75,14 +76,15 @@ export function MyReviews() {
       }
     }
     getMyReviews();
-  }, [])
+  }, [account])
 
   return (
     <div className="bg-gray-300 h-[calc(100vh-6.25rem)] w-full overflow-auto">
         <div className='flex flex-col flex-wrap items-center p-10 gap-10'>
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">My Stories</p>
-                <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                <div className='flex '>
+                  <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     New Story
@@ -90,13 +92,17 @@ export function MyReviews() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </a>
+                <a href="/service/my-account" className="ml-2 p-3 rounded-lg hover:bg-gray-300">Back</a>
+                </div>
+                
+                
             </div>
 
             <div id="review-cards" className="flex flex-wrap gap-10 items-center justify-center">  
                 {myReviews.map((review, index) => (
                   <PrivateReviewCard
                         key={index}
-                        id = {review.id}
+                        id={review.id}
                         username={review.username}
                         title={review.title}
                         rating={review.rating}
@@ -137,19 +143,12 @@ export function NewReview() {
         credentials: "include",
         body: formData
       });
-      const status = await response.json();
-      console.log(status);
+      if (response.ok) {
+        navigate("/service/reviews");
+      }
     } catch (err) {
       console.error("Error posting new review: ", err);
     }
-
-    setUsername("");
-    setTitle("");
-    setRating(1);
-    setDescription("");
-    setImage(null);
-
-    navigate("/service/reviews");
   }
 
   return (
@@ -161,7 +160,7 @@ export function NewReview() {
         <div className="max-w-md p-10 bg-gray-200 border border-gray-200 rounded-lg text-md
         shadow dark:bg-gray-800 dark:border-blue-950">
           
-          <form method="post" onSubmit={submitReview}>
+          <form>
             <label htmlFor="title">
               Title of story:
               <input className="w-full p-2 rounded-md"
@@ -203,11 +202,8 @@ export function NewReview() {
             <br></br>
             <br></br>
           
-            <input 
-              className="rounded-md p-2 text-white bg-blue-900 rounded-lg hover:bg-blue-950" 
-              type="submit" 
-              value="Submit">                      
-            </input>
+            <button className="rounded-md p-2 text-white bg-blue-900 rounded-lg hover:bg-blue-950" type="button" 
+            onClick={submitReview}>Submit</button>
             <a href="/service/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
           </form>
         </div>
