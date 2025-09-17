@@ -1,6 +1,6 @@
-import { PublicReviewCard, PrivateReviewCard } from '../components/ReviewCard';
+import { ReviewCard, EditReviewCard } from '../components/ReviewCard';
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { AccountContext } from '../AccountContext';
 
 export function AllReviews() {
@@ -39,7 +39,7 @@ export function AllReviews() {
 
             <div id="review-cards" className="flex flex-wrap gap-10 items-center justify-center">  
                 {reviews.map((review, index) => (
-                  <PublicReviewCard
+                  <ReviewCard
                         key={index}
                         id={review.id}
                         username={review.username}
@@ -105,7 +105,7 @@ export function MyReviews() {
 
             <div id="review-cards" className="flex flex-wrap gap-10 items-center justify-center">  
                 {myReviews.map((review, index) => (
-                  <PrivateReviewCard
+                  <EditReviewCard
                         key={index}
                         id={review.id}
                         username={review.username}
@@ -199,7 +199,7 @@ export function NewReview() {
             <br></br>
 
             <label htmlFor="image">
-              Image upload (.jpeg/.png images accepted):
+              Image upload (.jpg/.png images accepted):
               <input type="file" name="image"
               onChange={e => setImage(e.target.files[0])}></input>  
             </label>
@@ -217,13 +217,11 @@ export function NewReview() {
   );
 }
 
+// useParams() extracts params from React component 
 export function EditReview() {
   const navigate = useNavigate();
-  const { account, setAccount } = useContext(AccountContext);
-  // Prefill form with existing GET review data fetched from backend
-  // OR pass in current state from MyReviews page (?)
+  const { review_id } = useParams();
 
-  const [username, setUsername] = useState("");
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState(1);
   const [description, setDescription] = useState("");
@@ -231,12 +229,26 @@ export function EditReview() {
 
   async function submitEdits(e) {
     e.preventDefault();
-    // POST edits to Postgres
-    navigate("/static/maintenance");
 
+    const formData = new FormData();
+    formData.append('id', review_id);
+    formData.append('title', title);
+    formData.append('rating', rating);
+    formData.append('description', description);
+    if (image) {formData.append('image', image);}
 
-
-
+    try {
+      const response = await fetch("http://localhost:8080/api/service/reviews", { 
+        method: "PUT", 
+        credentials: "include",
+        body: formData
+      });
+      if (response.ok) {
+        navigate("/service/my-reviews");
+      }
+    } catch (err) {
+      console.error("Error posting new review: ", err);
+    }
   }
 
   return (
@@ -282,7 +294,7 @@ export function EditReview() {
             <br></br>
 
             <label htmlFor="image">
-              Image upload (.jpeg/.png images accepted):
+              Image upload (.jpg/.png images accepted):
               <input type="file" name="image"
               onChange={e => setImage(e.target.files[0])}></input>  
             </label>
@@ -303,6 +315,7 @@ export function EditReview() {
   );
 }
 
+// deleteReview is a plain JS function
 export function deleteReview(review_id) {
 
   async function execute() {

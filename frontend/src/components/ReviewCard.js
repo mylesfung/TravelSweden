@@ -1,10 +1,11 @@
-import { deleteReview } from "../service/Reviews";
+import { useNavigate } from "react-router";
+import { deleteReview, EditReview } from "../service/Reviews";
 
-export function PublicReviewCard({ id, username, title, rating, description, image }) {
+export function ReviewCard({ id, username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
-                {image && <img className="rounded mx-auto" src={`http://localhost:8080${image}`} alt="story-image" />}
+                {image && <img className="p-4 rounded mx-auto" src={`http://localhost:8080${image}`} alt="story-image" />}
             </a>
             <div className="p-8 text-md">
                 <a>
@@ -20,21 +21,14 @@ export function PublicReviewCard({ id, username, title, rating, description, ima
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-blue-950 dark:text-gray-400">{description}</p>
-                <a href="../static/Maintenance" className="inline-flex items-center px-3 py-2 font-medium 
-                text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
-                focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
-                dark:focus:ring-blue-800">
-                    Read more
-                    <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </a>
             </div>
         </div>
     )
 }
 
-export function PrivateReviewCard({ id, username, title, rating, description, image }) {
+export function EditReviewCard({ id, username, title, rating, description, image }) {
+
+    const navigate = useNavigate();
 
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
@@ -55,12 +49,12 @@ export function PrivateReviewCard({ id, username, title, rating, description, im
                 <hr></hr>
                 <br></br>
                 <p className="mb-3 font-normal text-blue-950 dark:text-gray-400">{description}</p>
-                <a href="../service/edit-review" className="inline-flex items-center px-5 py-2 font-medium 
+                <button onClick={() => navigate(`/service/edit-review/${id}`)} className="inline-flex items-center px-5 py-2 font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 
                 dark:focus:ring-blue-800">
                     Edit
-                </a>
+                </button>
                 <button onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
                 text-center text-white bg-red-800 rounded-lg hover:bg-red-900 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 

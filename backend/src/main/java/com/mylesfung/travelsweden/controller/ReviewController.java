@@ -4,6 +4,7 @@ import com.mylesfung.travelsweden.model.Review;
 import com.mylesfung.travelsweden.repository.ReviewRepo;
 import com.mylesfung.travelsweden.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Request;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +32,7 @@ public class ReviewController {
             @RequestParam String username,
             @RequestParam String title,
             @RequestParam Integer rating,
-            @RequestParam(required = false) String description,
+            @RequestParam String description,
             @RequestParam(required = false) MultipartFile image
 
     ) throws IOException {
@@ -40,8 +41,14 @@ public class ReviewController {
         return reviewService.addReview(username, title, rating, description, image);
     }
     @PutMapping
-    public ResponseEntity<String> editReview(Review rvw) {
-        return reviewService.editReview(rvw);
+    public ResponseEntity<String> editReview(
+            @RequestParam Long id,
+            @RequestParam String title,
+            @RequestParam Integer rating,
+            @RequestParam String description,
+            @RequestParam(required = false) MultipartFile image
+    ) throws IOException {
+        return reviewService.editReview(id, title, rating, description, image);
     }
     @DeleteMapping
     public ResponseEntity<String> deleteReview(@RequestParam Long id) {

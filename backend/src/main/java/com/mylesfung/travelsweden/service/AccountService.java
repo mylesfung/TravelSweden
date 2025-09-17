@@ -37,15 +37,13 @@ public class AccountService implements UserDetailsService {
         Account newAccount = new Account();
         newAccount.setUsername(username);
         newAccount.setPassword(passwordEncoder.encode(password));
-        accountRepo.save(newAccount);
-        return ResponseEntity.ok("Account created!");
-        //boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
-        //if (userAlreadyExists) {
-        //    return ResponseEntity.ok("Failed to create account: username taken");
-        //} else {
-        //    accountRepo.save(newAccount);
-        //    return ResponseEntity.ok("Account created!");
-        //}
+        boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
+        if (userAlreadyExists) {
+            return ResponseEntity.ok("Failed to create account: username taken");
+        } else {
+            accountRepo.save(newAccount);
+            return ResponseEntity.ok("Account created!");
+        }
 
     }
 

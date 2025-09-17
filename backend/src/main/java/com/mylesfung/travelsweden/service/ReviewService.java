@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -17,7 +18,13 @@ public class ReviewService {
     private final ReviewRepo reviewRepo;
 
     // Implement controller methods requiring validation, user checks, business rules, etc.
-    public ResponseEntity<String> addReview(String username, String title, Integer rating, String description, MultipartFile image) throws IOException {
+    public ResponseEntity<String> addReview(
+            String username,
+            String title,
+            Integer rating,
+            String description,
+            MultipartFile image
+    ) throws IOException {
         // Hibernate/Spring Data JPA converts Review => SQL at runtime and inserts into DB
         Review review = new Review();
         review.setUsername(username);
@@ -38,9 +45,27 @@ public class ReviewService {
         return ResponseEntity.ok("Review added successfully!");
     }
 
-    public ResponseEntity<String> editReview(Review rvw) {
-        // Implement PUT Review
+    public ResponseEntity<String> editReview(
+            Long id,
+            String title,
+            Integer rating,
+            String description,
+            MultipartFile image
+    ) throws IOException {
+        Review editedReview = reviewRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Review not found with id=" + id));
+        editedReview.setTitle(title);
+        editedReview.setRating(rating);
+        editedReview.setDescription(description);
+        if (image != null && !image.isEmpty()) {
+            String uploadDir = "uploads/";
+            String fileName = UUID.randomUUID() + "-" + image.getOriginalFilename();
+            Path filePath = Paths.get(uploadDir + fileName);
+            Files.createDirectories(filePath.getParent());
+            Files.write(filePath, image.getBytes());
+            editedReview.setImageURL("/uploads/" + fileName);
+        }
+        reviewRepo.save(editedReview);
         return ResponseEntity.ok("Review edited successfully!");
-
     }
 }

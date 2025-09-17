@@ -2,7 +2,7 @@ import Flag from "../images/skånska-flaggan.png";
 import { useState, useEffect, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
 import { resolvePath, useNavigate } from "react-router"; 
-import { PrivateReviewCard } from "../components/ReviewCard";
+import { EditReviewCard } from "../components/ReviewCard";
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {

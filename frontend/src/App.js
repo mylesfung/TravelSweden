@@ -27,7 +27,7 @@ export function App() {
                     <Route path="reviews" element={<AllReviews />} />
                     <Route path="new-review" element={<NewReview />} />
                     <Route path="my-reviews" element={<MyReviews />} />
-                    <Route path="edit-review" element={<EditReview />} />
+                    <Route path="edit-review/:review_id" element={<EditReview />} />
                     <Route path="create-account" element={<CreateAccount />} />
                     <Route path="sign-in" element={<SignIn />} />
                     <Route path="my-account" element={<MyAccount />} />
