@@ -1,8 +1,7 @@
 import Flag from "../images/skånska-flaggan.png";
 import { useState, useEffect, useContext } from 'react';
 import { AccountContext } from "../AccountContext";
-import { resolvePath, useNavigate } from "react-router"; 
-import { EditReviewCard } from "../components/ReviewCard";
+import { useNavigate } from "react-router"; 
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
 export function CreateAccount() {
@@ -149,7 +148,7 @@ export function SignIn() {
           </div>
 
           <div className="mt-5 w-96">
-            <form onSubmit={authenticate} className="space-y-3">
+            <form className="space-y-3">
               <div>
                 <label htmlFor="email" className="block text-md font-medium text-gray-900">
                   Username
@@ -182,15 +181,12 @@ export function SignIn() {
 
               <br></br>
 
-              <div>
-                <input 
-                  className="flex w-full justify-center rounded-md bg-blue-900 
+              <div className="flex justify-center">
+                <button className="flex w-full justify-center rounded-md bg-blue-900 
                 px-3 py-1.5 text-md font-semibold text-white shadow-sm hover:bg-blue-900 
                 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
-                focus-visible:outline-blue-900" 
-                  type="submit" 
-                  value="Sign in">                      
-                </input>
+                focus-visible:outline-blue-900" type="button" 
+                onClick={authenticate}>Sign in</button>
               </div>
             </form>
 

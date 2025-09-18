@@ -2,6 +2,7 @@ import { ReviewCard, EditReviewCard } from '../components/ReviewCard';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AccountContext } from '../AccountContext';
+import { getAllByPlaceholderText } from '@testing-library/react';
 
 export function AllReviews() {
 
@@ -125,7 +126,6 @@ export function NewReview() {
   const navigate = useNavigate();
   const { account, setAccount } = useContext(AccountContext);
 
-  const [username, setUsername] = useState("");
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState(1);
   const [description, setDescription] = useState("");
@@ -315,18 +315,13 @@ export function EditReview() {
   );
 }
 
-// deleteReview is a plain JS function
-export function deleteReview(review_id) {
-
-  async function execute() {
-    try {
-      const response = await fetch(`http://localhost:8080/api/service/reviews?id=${review_id}`, {
-        method: "DELETE",
-        credentials: "include"
+export const deleteAccount = async(review_id) => {
+  try {
+      await fetch(`http://localhost:8080/api/service/reviews?id=${review_id}`, {
+          method: "DELETE",
+          credentials: "include"
       })
-    } catch (err) {
+  } catch (err) {
       console.error("Failed to delete review: " + err);
-    }
   }
-  execute();
 }

@@ -1,5 +1,5 @@
+import { deleteAccount } from "../service/Reviews";
 import { useNavigate } from "react-router";
-import { deleteReview, EditReview } from "../service/Reviews";
 
 export function ReviewCard({ id, username, title, rating, description, image }) {
     return (
@@ -27,9 +27,8 @@ export function ReviewCard({ id, username, title, rating, description, image }) 
 }
 
 export function EditReviewCard({ id, username, title, rating, description, image }) {
-
     const navigate = useNavigate();
-
+    
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
@@ -55,7 +54,7 @@ export function EditReviewCard({ id, username, title, rating, description, image
                 dark:focus:ring-blue-800">
                     Edit
                 </button>
-                <button onClick={() => deleteReview(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
+                <button onClick={() => deleteAccount(id)} className="inline-flex items-center ml-2 px-3 py-2 font-medium 
                 text-center text-white bg-red-800 rounded-lg hover:bg-red-900 focus:ring-4 
                 focus:outline-none focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-red-900 
                 dark:focus:ring-blue-800">

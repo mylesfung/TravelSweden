@@ -1,15 +1,15 @@
 import Flag from "./images/skånska-flaggan.png";
-import { Link, Outlet } from 'react-router';
+import { Link } from 'react-router';
 import { useContext } from 'react';
 import { AccountContext } from './AccountContext';
 // svg icons from https://heroicons.com/
 
 export function Navbar() {
 
-    const { account, setAccount } = useContext(AccountContext);
+    const { account } = useContext(AccountContext);
 
-    const route = (account.username == "Anonymous") ? "/service/sign-in" : "/service/my-account";
-    const text = (account.username == "Anonymous") ? "Sign In" : "My Account";
+    const route = (account.username === "Anonymous") ? "/service/sign-in" : "/service/my-account";
+    const text = (account.username === "Anonymous") ? "Sign In" : "My Account";
 
     return (
         <div className="flex justify-between p-5 items-center border-b-4 border-double bg-gray-100 border-blue-950">
