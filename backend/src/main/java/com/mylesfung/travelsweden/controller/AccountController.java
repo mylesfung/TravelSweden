@@ -13,7 +13,6 @@ import com.mylesfung.travelsweden.service.AccountService;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -51,9 +50,9 @@ public class AccountController {
     public ResponseEntity<String> deleteAccount(@RequestParam String username) {
         Account account = accountRepo.findByUsername(username);
         if (account == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found!");
         }
         accountRepo.deleteById(account.getId());
-        return ResponseEntity.ok("Account deleted");
+        return ResponseEntity.ok("Account deleted!");
     }
 }
