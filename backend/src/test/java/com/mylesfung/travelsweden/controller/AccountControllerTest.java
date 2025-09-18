@@ -6,6 +6,7 @@ package com.mylesfung.travelsweden.controller;
 import com.mylesfung.travelsweden.model.Account;
 import com.mylesfung.travelsweden.repository.AccountRepo;
 import com.mylesfung.travelsweden.service.AccountService;
+import lombok.With;
 import org.springframework.http.ResponseEntity;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -17,11 +18,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-
 
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
@@ -73,6 +73,22 @@ public class AccountControllerTest {
                         .content("{\"username\":\"iga_swiatek\",\"password\":\"poland\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Account created (MOCK text)!"));
+    }
+
+    @Test
+    @WithMockUser
+    public void testEditAccount() throws Exception {
+        // Mock request-response template
+        Mockito.when(accountService.editAccount(anyLong(), anyString(), anyString()))
+                .thenReturn(ResponseEntity.ok("Account edited (MOCK text)!"));
+        // Execute mock
+        mockMvc.perform(put("/api/service/account")
+                        .with(csrf())
+                        .param("id", "1")
+                        .param("username", "iga_swiatek")
+                        .param("password", "poland"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Account edited (MOCK text)!"));
     }
 
     @Test

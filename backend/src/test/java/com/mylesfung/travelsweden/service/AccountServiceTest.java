@@ -1,4 +1,3 @@
 package com.mylesfung.travelsweden.service;
 
-public class AccountServiceTest {
-}
+public class AccountServiceTest {}

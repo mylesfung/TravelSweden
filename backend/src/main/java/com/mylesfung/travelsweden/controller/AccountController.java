@@ -40,11 +40,11 @@ public class AccountController {
     }
     @PutMapping
     public ResponseEntity<String> editAccount(
-            @RequestParam Long uid,
+            @RequestParam Long id,
             @RequestParam String username,
             @RequestParam String password
     ) {
-        return accountService.editAccount(uid, username, password);
+        return accountService.editAccount(id, username, password);
     }
     @DeleteMapping
     public ResponseEntity<String> deleteAccount(@RequestParam String username) {
