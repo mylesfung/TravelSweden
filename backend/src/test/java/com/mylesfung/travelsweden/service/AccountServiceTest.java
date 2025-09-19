@@ -57,8 +57,8 @@ public class AccountServiceTest {
         Mockito.when(accountRepo.findByUsername("aryna_sabalenka")).thenReturn(null);
         Mockito.when(passwordEncoder.encode(anyString())).thenReturn("password hash");
         // Test accountService method call
-        ResponseEntity<String> response = accountService.createAccount("aryna_sabalenka", "russia");
-        assertEquals(response.getBody(), "Account created!");
+        ResponseEntity<String> response = accountService.createAccount("aryna_sabalenka", "belarus");
+        assertEquals("Account created!", response.getBody());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class AccountServiceTest {
         DuplicateKeyException exception =
                 assertThrows(DuplicateKeyException.class,
                         () -> accountService.createAccount("iga", "warsaw"));
-        assertEquals(exception.getMessage(), "Failed to create account: username taken");
+        assertEquals("Failed to create account: username taken", exception.getMessage());
     }
 
     @Test
@@ -77,6 +77,6 @@ public class AccountServiceTest {
         Account igaSwiatekAccount = new Account(1L, "iga", "warsaw");
         Mockito.when(accountRepo.getById(anyLong())).thenReturn(igaSwiatekAccount);
         ResponseEntity<String> response = accountService.editAccount(1L, "iga", "warsaw");
-        assertEquals(response.getBody(), "Account information updated!");
+        assertEquals("Account information updated!", response.getBody());
     }
 }
