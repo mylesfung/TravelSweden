@@ -47,7 +47,7 @@ export function CreateAccount() {
                   </label>
                 <div className="mt-2">
                   <input type="text" name="username" value={username} 
-                  onChange={e => setUsername(e.target.value)} autocomplete="current-username" 
+                  onChange={e => setUsername(e.target.value)} 
                   required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 
                   outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
                   focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
@@ -63,7 +63,7 @@ export function CreateAccount() {
                 </div>
                 <div className="mt-2">
                   <input type="password" name="password" value={password} 
-                  onChange={e => setPassword(e.target.value)} autocomplete="current-password" 
+                  onChange={e => setPassword(e.target.value)}
                   required className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline 
                   outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
                   focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
@@ -94,7 +94,7 @@ export function CreateAccount() {
 
 export function SignIn() {
   const navigate = useNavigate();
-  const { account, setAccount } = useContext(AccountContext);
+  const { setAccount } = useContext(AccountContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -155,7 +155,7 @@ export function SignIn() {
                   </label>
                 <div className="mt-2">
                   <input type="text" name="username" onChange={e => setUsername(e.target.value)} 
-                  id="username" autocomplete="email" required className="block w-full rounded-md 
+                  id="username" required className="block w-full rounded-md 
                   bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 
                   outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 
                   focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
@@ -171,7 +171,7 @@ export function SignIn() {
                 </div>
                 <div className="mt-2">
                   <input type="password" name="password" onChange={e => setPassword(e.target.value)} 
-                  id="password" autocomplete="current-password" required className="block w-full 
+                  id="password" required className="block w-full 
                   rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 
                   -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline 
                   focus:outline-2 focus:-outline-offset-2 focus:outline-blue-900 sm:text-md">
