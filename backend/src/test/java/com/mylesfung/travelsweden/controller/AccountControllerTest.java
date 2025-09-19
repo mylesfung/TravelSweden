@@ -6,7 +6,6 @@ package com.mylesfung.travelsweden.controller;
 import com.mylesfung.travelsweden.model.Account;
 import com.mylesfung.travelsweden.repository.AccountRepo;
 import com.mylesfung.travelsweden.service.AccountService;
-import lombok.With;
 import org.springframework.http.ResponseEntity;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -23,13 +22,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
+// SLICE TESTING with @WebMvcTest, Mockito, MockMvc (tests HTTP layer routing)
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
 
     // MockMvc : Spring's mock HTTP client bean for controller testing
     @Autowired
     private MockMvc mockMvc;
-    @MockitoBean
+    @MockitoBean    // Injects mock bean into Spring ApplicationContext (all beans)         (no need for @InjectMock)
     private AccountRepo accountRepo;
     @MockitoBean
     private AccountService accountService;
@@ -42,7 +42,7 @@ public class AccountControllerTest {
                 new Account(1L, "iga_swiatek", "poland"),
                 new Account(2L, "elena_rybakina", "kazakhstan")
         ));
-        // Execute mock
+        // Test route
         mockMvc.perform(get("/api/service/account"))
                 .andExpect(status().isOk()) // HTTP 200
                 // jsonPath( $[index].attributeName )
@@ -66,7 +66,7 @@ public class AccountControllerTest {
         // Mock request-response template
         Mockito.when(accountService.createAccount(anyString(), anyString()))
                 .thenReturn(ResponseEntity.ok("Account created (MOCK text)!"));
-        // Execute mock
+        // Test route
         mockMvc.perform(post("/api/service/account/create")
                         .with(csrf())
                         .contentType("application/json")
@@ -81,7 +81,7 @@ public class AccountControllerTest {
         // Mock request-response template
         Mockito.when(accountService.editAccount(anyLong(), anyString(), anyString()))
                 .thenReturn(ResponseEntity.ok("Account edited (MOCK text)!"));
-        // Execute mock
+        // Test route
         mockMvc.perform(put("/api/service/account")
                         .with(csrf())
                         .param("id", "1")

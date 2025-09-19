@@ -3,6 +3,7 @@ package com.mylesfung.travelsweden.service;
 import com.mylesfung.travelsweden.model.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,7 +40,7 @@ public class AccountService implements UserDetailsService {
         newAccount.setPassword(passwordEncoder.encode(password));
         boolean userAlreadyExists = accountRepo.findByUsername(username) != null;
         if (userAlreadyExists) {
-            return ResponseEntity.ok("Failed to create account: username taken");
+            throw new DuplicateKeyException("Failed to create account: username taken");
         } else {
             accountRepo.save(newAccount);
             return ResponseEntity.ok("Account created!");
@@ -47,8 +48,8 @@ public class AccountService implements UserDetailsService {
 
     }
 
-    public ResponseEntity<String> editAccount(Long uid, String username, String password) {
-        Account currentAccount = accountRepo.getById(uid);
+    public ResponseEntity<String> editAccount(Long id, String username, String password) {
+        Account currentAccount = accountRepo.getById(id);
         currentAccount.setUsername(username);
         currentAccount.setPassword(password);
         accountRepo.save(currentAccount);
