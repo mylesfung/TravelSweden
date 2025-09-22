@@ -4,6 +4,8 @@ import { AccountContext } from "../AccountContext";
 import { useNavigate } from "react-router"; 
 // Login/CreateAccount cards from https://v1.tailwindcss.com/components/cards
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function CreateAccount() {
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ export function CreateAccount() {
 
     try {
       //console.log("BEFORE FETCH");
-      const response = await fetch("http://localhost:8080/api/service/account/create", {
+      const response = await fetch(`${API_URL}/api/service/account/create`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ username, password })
@@ -107,7 +109,7 @@ export function SignIn() {
     data.append("password", password);
 
     try {
-      await fetch("http://localhost:8080/spring-security-login", {
+      await fetch(`${API_URL}/spring-security-login`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -119,7 +121,7 @@ export function SignIn() {
       console.error("browser JS raises backend-handled CORS issue: " + err);
     }
     try {
-      const response = await fetch("http://localhost:8080/api/service/account/current", {
+      const response = await fetch(`${API_URL}/api/service/account/current`, {
         method: "GET",
         credentials: "include"
       });
@@ -208,7 +210,7 @@ export function MyAccount() {
 
   async function handleLogout() {
     try {
-      await fetch("http://localhost:8080/spring-security-logout", {
+      await fetch(`${API_URL}/spring-security-logout`, {
         method: "POST",
         credentials: "include",
       });
@@ -223,7 +225,7 @@ export function MyAccount() {
   async function deleteAccount() {
     try {
       // Delete account first
-      await fetch(`http://localhost:8080/api/service/account?username=${account.username}`, {
+      await fetch(`${API_URL}/api/service/account?username=${account.username}`, {
         method: "DELETE",
         credentials: "include",
       });

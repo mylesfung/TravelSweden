@@ -1,11 +1,13 @@
 import { deleteAccount } from "../service/Reviews";
 import { useNavigate } from "react-router";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function ReviewCard({ id, username, title, rating, description, image }) {
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
-                {image && <img className="p-4 rounded mx-auto" src={`http://localhost:8080${image}`} alt="story-image" />}
+                {image && <img className="p-4 rounded mx-auto" src={`${API_URL}${image}`} alt="story-image" />}
             </a>
             <div className="p-8 text-md">
                 <a>
@@ -32,7 +34,7 @@ export function EditReviewCard({ id, username, title, rating, description, image
     return (
         <div className="max-w-xs h-fit bg-gray-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-blue-950">
             <a>
-                {image && <img className="rounded mx-auto" src={`http://localhost:8080${image}`} alt="story-image" />}
+                {image && <img className="rounded mx-auto" src={`${API_URL}${image}`} alt="story-image" />}
             </a>
             <div className="p-8 text-md">
                 <a>

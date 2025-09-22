@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  postgres-dev:
+      image: postgres:16
+      container_name: postgres-all-envs
+      environment:
+        POSTGRES_USER: myles
+        POSTGRES_PASSWORD: lastpass
+        POSTGRES_DB: travelsweden_dev
+      ports:
+        - "5433:5432" # "host_port:container_port"
+      volumes:
+        - travelsweden-pgdata:/var/lib/postgresql/data
+        - ./init/:/docker-entrypoint-initdb.d/:ro
+
+volumes:
+  travelsweden-pgdata:

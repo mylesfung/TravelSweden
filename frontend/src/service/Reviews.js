@@ -2,7 +2,9 @@ import { ReviewCard, EditReviewCard } from '../components/ReviewCard';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AccountContext } from '../AccountContext';
-import { getAllByPlaceholderText } from '@testing-library/react';
+
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function AllReviews() {
 
@@ -11,7 +13,7 @@ export function AllReviews() {
   useEffect(() => {
     async function getReviews() {
       try {
-        const response = await fetch('http://localhost:8080/api/service/reviews');
+        const response = await fetch(`${API_URL}/api/service/reviews`);
         const data = await response.json();
         setReviews(data);
       } catch (err) {
@@ -58,7 +60,7 @@ export function AllReviews() {
 
 export function MyReviews() {
 
-  const { account, setAccount } = useContext(AccountContext);
+  const { account } = useContext(AccountContext);
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export function MyReviews() {
       if (account.username === "Anonymous") return;
 
       try {
-        const response = await fetch(`http://localhost:8080/api/service/reviews/user?username=${account.username}`, {
+        const response = await fetch(`${API_URL}/api/service/reviews/user?username=${account.username}`, {
           method: "GET",
           credentials: "include"
         });
@@ -143,7 +145,7 @@ export function NewReview() {
     formData.append('image', image);
 
     try {
-      const response = await fetch('http://localhost:8080/api/service/reviews', { 
+      const response = await fetch(`${API_URL}/api/service/reviews`, { 
         method: "POST", 
         credentials: "include",
         body: formData
@@ -238,7 +240,7 @@ export function EditReview() {
     if (image) {formData.append('image', image);}
 
     try {
-      const response = await fetch("http://localhost:8080/api/service/reviews", { 
+      const response = await fetch(`${API_URL}/api/service/reviews`, { 
         method: "PUT", 
         credentials: "include",
         body: formData
@@ -317,7 +319,7 @@ export function EditReview() {
 
 export const deleteAccount = async(review_id) => {
   try {
-      await fetch(`http://localhost:8080/api/service/reviews?id=${review_id}`, {
+      await fetch(`${API_URL}/api/service/reviews?id=${review_id}`, {
           method: "DELETE",
           credentials: "include"
       })

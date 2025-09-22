@@ -6,12 +6,13 @@ export const AccountContext = createContext(null);
 
 // Export Provider wrapper component
 export function AccountProvider({ children }) {
+    const API_URL = process.env.REACT_APP_API_URL;
     const [account, setAccount] = useState({ "username": "Anonymous" });
 
     useEffect(() => {
         async function getCurrentUser() {
             try {
-                const response = await fetch('http://localhost:8080/api/service/account/current', {
+                const response = await fetch(`${API_URL}/api/service/account/current`, {
                     method: "GET",
                     credentials: "include"  // Send JSESSIONID to Spring Security
                 });
