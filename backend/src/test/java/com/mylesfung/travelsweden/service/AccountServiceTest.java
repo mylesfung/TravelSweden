@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 
-// UNIT TESTING with MockitoExtension, Mockito
+// Service layer UNIT TESTING with MockitoExtension, Mockito
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceTest {
 
@@ -27,7 +27,7 @@ public class AccountServiceTest {
     @Mock
     private PasswordEncoder passwordEncoder;
     @InjectMocks
-    private AccountService accountService;  // @InjectMock creates a real class instance under test, and injects @Mock-ed dependencies
+    private AccountService accountService;  // @InjectMocks creates a real class instance under test and injects Mocked dependencies
 
     // Happy path
     @Test

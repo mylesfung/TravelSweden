@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
-// SLICE TESTING with @WebMvcTest, Mockito, MockMvc (tests HTTP layer routing)
+// Controller UNIT TESTING with @WebMvcTest, Mockito, MockMvc (tests HTTP layer routing)
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
 
