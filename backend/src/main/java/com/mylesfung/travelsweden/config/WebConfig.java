@@ -5,22 +5,23 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-// WebConfig provides configuration for MVC controllers
-// (this is separate from Spring Security, which handles login/logout/CORS in SecurityConfig)
+// WebConfig overrides Spring Boot default static resource handling
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // CORS: Makes local file uploads available to browser HTTP
+        // Serve static resources by URL pattern and data type:folder
+        // only if a matching file exists
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:uploads/");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowCredentials(true);
+        registry
+            .addMapping("/api/service/**")
+            .allowedOrigins("http://localhost:3000")
+            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+            .allowCredentials(true);
     }
 }
 

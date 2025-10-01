@@ -1,5 +1,6 @@
 package com.mylesfung.travelsweden.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,9 @@ public class SecurityConfig {
                                 "/api/service/account/create",
                                 "/uploads/**"
                         ).permitAll()
+                        // allow SPA fallback: any non-API, non-static route
+                        .requestMatchers("/", "/index.html", "/manifest.json", "/skånska-flaggan.png").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS preflight requests
                         .anyRequest().authenticated()
                 )
