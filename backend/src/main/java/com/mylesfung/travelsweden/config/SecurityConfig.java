@@ -26,7 +26,14 @@ public class SecurityConfig {
                                 "/uploads/**"
                         ).permitAll()
                         // allow SPA fallback: any non-API, non-static route
-                        .requestMatchers("/", "/index.html", "/manifest.json", "/skånska-flaggan.png").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/static/**",
+                                "/index.html",
+                                "/robots.txt",
+                                "/manifest.json",
+                                "/skånska-flaggan.png"
+                        ).permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS preflight requests
                         .anyRequest().authenticated()
