@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router";
+import { Outlet } from 'react-router';
 
 import { Home } from './common/Home';
 import { Layout } from './Layout';
@@ -12,7 +13,7 @@ export function App() {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="common">
+                <Route path="common" element={<Outlet />}>
                     <Route path="lodging" element={<Lodging />} />
                     <Route path="transit" element={<Transit />} />
                     <Route path="cuisine" element={<Cuisine />} />
@@ -22,7 +23,7 @@ export function App() {
                     <Route path="maintenance" element={<Maintenance />} />
                     <Route path="account-required" element={<AccountRequired />} />
                 </Route>
-                <Route path="client">
+                <Route path="client" element={<Outlet />}>
                     <Route path="reviews" element={<AllReviews />} />
                     <Route path="new-review" element={<NewReview />} />
                     <Route path="my-reviews" element={<MyReviews />} />
