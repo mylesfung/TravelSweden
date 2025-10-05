@@ -30,7 +30,7 @@ export function AllReviews() {
                 <p className="text-3xl font-semibold">Travel Stories</p>
                 <p className="text-lg w-1/2 text-center">A collection of user stories of unique happenings across
                  cities, towns, history, culture, nature, design innovation, and more.</p>
-                <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                <a href="/client/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     New Story
@@ -87,12 +87,12 @@ export function MyReviews() {
             <div className='flex flex-col items-center w-3/4 align-center gap-10 md:mr-28'>
                 <p className="text-3xl font-semibold">My Stories</p>
                 <div className='flex gap-2'>
-                  <a href="/service/reviews" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                  <a href="/client/reviews" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     All Stories
                 </a>
-                  <a href="/service/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
+                  <a href="/client/new-review" className="inline-flex items-center px-4 py-3 text-lg font-medium 
                 text-center text-white bg-blue-900 rounded-lg hover:bg-blue-950 focus:ring-4 focus:outline-none 
                 focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                     New Story
@@ -100,7 +100,7 @@ export function MyReviews() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </a>
-                <a href="/service/my-account" className="text-lg text-blue-950 px-5 py-3 rounded-lg hover:bg-gray-400">Back</a>
+                <a href="/client/my-account" className="text-lg text-blue-950 px-5 py-3 rounded-lg hover:bg-gray-400">Back</a>
                 </div>
                 
                 
@@ -151,7 +151,7 @@ export function NewReview() {
         body: formData
       });
       if (response.ok) {
-        navigate("/service/reviews");
+        navigate("/client/reviews");
       }
     } catch (err) {
       console.error("Error posting new review: ", err);
@@ -211,7 +211,7 @@ export function NewReview() {
           
             <button className="rounded-md p-2 text-white bg-blue-900 rounded-lg hover:bg-blue-950" type="button" 
             onClick={submitReview}>Submit</button>
-            <a href="/service/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
+            <a href="/client/reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
           </form>
         </div>
       </div>
@@ -246,7 +246,7 @@ export function EditReview() {
         body: formData
       });
       if (response.ok) {
-        navigate("/service/my-reviews");
+        navigate("/client/my-reviews");
       }
     } catch (err) {
       console.error("Error posting new review: ", err);
@@ -309,7 +309,7 @@ export function EditReview() {
               type="submit" 
               value="Submit">                      
             </input>
-            <a href="/service/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
+            <a href="/client/my-reviews" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Back</a>
           </form>
         </div>
       </div>

@@ -8,7 +8,7 @@ export function Navbar() {
 
     const { account } = useContext(AccountContext);
 
-    const route = (account.username === "Anonymous") ? "/service/sign-in" : "/service/my-account";
+    const route = (account.username === "Anonymous") ? "/client/sign-in" : "/client/my-account";
     const text = (account.username === "Anonymous") ? "Sign In" : "My Account";
 
     return (

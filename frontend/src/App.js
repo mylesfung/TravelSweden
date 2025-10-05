@@ -22,7 +22,7 @@ export function App() {
                     <Route path="maintenance" element={<Maintenance />} />
                     <Route path="account-required" element={<AccountRequired />} />
                 </Route>
-                <Route path="service">
+                <Route path="client">
                     <Route path="reviews" element={<AllReviews />} />
                     <Route path="new-review" element={<NewReview />} />
                     <Route path="my-reviews" element={<MyReviews />} />

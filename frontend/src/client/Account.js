@@ -24,7 +24,7 @@ export function CreateAccount() {
       })
       //console.log("AFTER FETCH");
       if (response.ok) {
-        navigate("/service/sign-in");
+        navigate("/client/sign-in");
       } 
     } catch (err) {
       console.error("Failed to create account: " + err);
@@ -247,12 +247,12 @@ export function MyAccount() {
                     text-blue-950 font-bold rounded bg-gray-400 hover:bg-gray-500 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                         Log out
                     </button>
-                      <a href="/service/my-reviews" className="w-60 justify-center inline-flex px-4 py-3 text-md 
+                      <a href="/client/my-reviews" className="w-60 justify-center inline-flex px-4 py-3 text-md 
                     text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                     focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                         My Stories
                     </a>
-                    <a href="/service/edit-account" className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
+                    <a href="/client/edit-account" className="w-60 justify-center inline-flex items-center px-3 py-2 text-md 
                     text-center text-white bg-blue-900 rounded hover:bg-blue-950 focus:ring-4 focus:outline-none 
                     focus:ring-blue-300 dark:bg-blue-950 dark:hover:bg-blue-900 dark:focus:ring-blue-800">
                         Edit username/password
@@ -324,7 +324,7 @@ export function EditAccount() {
                 type="submit" 
                 value="Submit Edits">                      
               </input>
-              <a href="/service/my-account" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
+              <a href="/client/my-account" className="ml-2 rounded-md p-3 rounded-lg hover:bg-gray-300">Cancel</a>
             </form>
           </div>
         </div>
