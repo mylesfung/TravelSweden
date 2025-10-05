@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router";
 
-import { Home } from './static/Home';
+import { Home } from './common/Home';
 import { Layout } from './Layout';
-import { Lodging, Transit, Cuisine, Nature, History, Design } from "./static/SidebarInfo";
-import { Maintenance, AccountRequired } from "./static/StatusMessages";
+import { Lodging, Transit, Cuisine, Nature, History, Design } from "./common/SidebarInfo";
+import { Maintenance, AccountRequired } from "./common/StatusMessages";
 import { AllReviews, NewReview, MyReviews, EditReview } from "./client/Reviews";
 import { CreateAccount, SignIn, MyAccount, EditAccount } from "./client/Account";
 
@@ -12,7 +12,7 @@ export function App() {
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="static">
+                <Route path="common">
                     <Route path="lodging" element={<Lodging />} />
                     <Route path="transit" element={<Transit />} />
                     <Route path="cuisine" element={<Cuisine />} />

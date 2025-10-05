@@ -283,7 +283,7 @@ export function EditAccount() {
   async function submitEdits(e) {
     e.preventDefault();
     // PUT (new username, new password) to backend
-    navigate("/static/maintenance")
+    navigate("/common/maintenance")
 
 
     
