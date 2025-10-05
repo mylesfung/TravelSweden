@@ -4,8 +4,8 @@ import { Home } from './static/Home';
 import { Layout } from './Layout';
 import { Lodging, Transit, Cuisine, Nature, History, Design } from "./static/SidebarInfo";
 import { Maintenance, AccountRequired } from "./static/StatusMessages";
-import { AllReviews, NewReview, MyReviews, EditReview } from './service/Reviews';
-import { CreateAccount, SignIn, MyAccount, EditAccount } from './service/Account';
+import { AllReviews, NewReview, MyReviews, EditReview } from "./client/Reviews";
+import { CreateAccount, SignIn, MyAccount, EditAccount } from "./client/Account";
 
 export function App() {
     return (

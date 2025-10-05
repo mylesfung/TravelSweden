@@ -1,4 +1,4 @@
-import { deleteAccount } from "../service/Reviews";
+import { deleteAccount } from "../client/Reviews";
 import { useNavigate } from "react-router";
 
 const API_URL = process.env.REACT_APP_API_URL;
