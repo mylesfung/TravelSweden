@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aa97e25f.css",
+    "main.js": "/static/js/main.87203d0a.js",
+    "static/js/453.fdf98674.chunk.js": "/static/js/453.fdf98674.chunk.js",
+    "static/media/malmö-street.jpg": "/static/media/malmö-street.f3664a2a8e69d34616f9.jpg",
+    "index.html": "/index.html",
+    "main.aa97e25f.css.map": "/static/css/main.aa97e25f.css.map",
+    "main.87203d0a.js.map": "/static/js/main.87203d0a.js.map",
+    "453.fdf98674.chunk.js.map": "/static/js/453.fdf98674.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa97e25f.css",
+    "static/js/main.87203d0a.js"
+  ]
+}

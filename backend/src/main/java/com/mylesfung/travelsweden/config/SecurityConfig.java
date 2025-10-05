@@ -25,13 +25,14 @@ public class SecurityConfig {
                                 "/api/service/account/create",
                                 "/uploads/**"
                         ).permitAll()
-                        // allow SPA fallback: any non-API, non-static route
+                        // allow SPA fallback: any non-API route
                         .requestMatchers(
                                 "/",
                                 "/static/**",
+                                "/client/**",
+                                "/common/**",
                                 "/index.html",
                                 "/robots.txt",
-                                "/manifest.json",
                                 "/skånska-flaggan.png"
                         ).permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
