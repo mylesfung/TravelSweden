@@ -1,18 +1,36 @@
 version: "3.8"
 
 services:
-  postgres-dev:
+  postgres-prod:
       image: postgres:16
       container_name: postgres-all-envs
       environment:
         POSTGRES_USER: myles
         POSTGRES_PASSWORD: lastpass
-        POSTGRES_DB: travelsweden_dev
+        POSTGRES_DB: travelsweden_prod   # create separate docker-compose files for dev/test/prod
       ports:
-        - "5433:5432" # "host_port:container_port"
+        - "5433:5432"  # "host_port:container_port"
       volumes:
         - travelsweden-pgdata:/var/lib/postgresql/data
         - ./init/:/docker-entrypoint-initdb.d/:ro
+
+  backend:
+    container_name: travelsweden-backend
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-prod:5432/travelsweden_prod
+      SPRING_DATASOURCE_USERNAME: myles
+      SPRING_DATASOURCE_PASSWORD: lastpass
+    depends_on:
+      - postgres-prod
+    networks:
+      - travelsweden-network
+    ports:
+      - "8080:8080"
+
+networks:
+  travelsweden-network:
+    driver: bridge
 
 volumes:
   travelsweden-pgdata:
