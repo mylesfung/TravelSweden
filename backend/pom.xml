@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mylesfung</groupId>
 	<artifactId>travelsweden</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>travelsweden</name>
 	<description>Full stack travel dashboard project</description>
 	<url/>

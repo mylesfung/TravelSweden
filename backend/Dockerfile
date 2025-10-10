@@ -11,7 +11,9 @@ COPY src ./src
 # Build the Spring Boot jar
 RUN mvn clean package -DskipTests
 
-# Runtime - lightweight image with only JRE
+# Runtime -  lightweight image with only JRE
+# images using x86 emulation (required for Cloud Run) have
+# worse performance but still deploys fine
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 # Copy the built JAR from the builder stage
